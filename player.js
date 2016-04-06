@@ -1,5 +1,6 @@
 
-var Player = function() {
+var Player = function() 
+{
 	this.image = document.createElement("img");
 	this.x = canvas.width/2;
 	this.y = canvas.height/2;

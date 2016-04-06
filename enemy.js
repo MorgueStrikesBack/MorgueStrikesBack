@@ -1,11 +1,12 @@
 
-var Enemy = function() {
+var Enemy = function() 
+{
 	this.image = document.createElement("img");
 	this.x = 58;
 	this.y = 58;
 	this.width = 64;
 	this.height = 56;
-	this.image.src = "Enemy.png"; 
+	this.image.src = "enemy.png"; 
 };
 
 Enemy.prototype.update = function(deltaTime)
