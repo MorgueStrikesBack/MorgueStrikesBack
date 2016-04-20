@@ -4,7 +4,6 @@ var Player = function() {
 	this.position = new Vector2(canvas.width/2, canvas.height/2)
 
 	this.velocity = new Vector2(0,0)
-	this.offset = new Vector2();
 	this.width = 159;
 	this.height = 163;
 

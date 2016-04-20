@@ -1,8 +1,7 @@
 
 var Enemy = function() {
 	this.image = document.createElement("img");
-	this.x = 58;
-	this.y = 58;
+	this.position = new Vector2(58,58)
 	this.width = 64;
 	this.height = 56;
 	this.image.src = "Enemy.png"; 
@@ -25,7 +24,7 @@ Enemy.prototype.update = function(deltaTime)
 Enemy.prototype.draw = function()
 {
 	context.save();
-		context.translate(this.x, this.y);
+		context.translate(this.position.x, this.position.y);
 		context.rotate(this.rotation);
 		context.drawImage(this.image, -this.width/2, -this.height/2);
 	context.restore();

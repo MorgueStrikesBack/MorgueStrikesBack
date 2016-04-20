@@ -41,8 +41,19 @@ var fpsCount = 0;
 var fpsTime = 0;
 
 
+//Game States
+var STATE_SPLASH = 0;
+var STATE_GAME = 1;
 
+var gameState = STATE_SPLASH;
 
+var menuTimer = 0;
+var space = false;
+
+var score = 0;
+var highscore = 0;
+
+var retry = false;
 
 var enemy = new Enemy();
 var player = new Player();
@@ -92,7 +103,7 @@ var currentLevel = level1
 
 function cellAtPixelCoord(layer, x,y)
 {
-	if(x<0 || x>SCREEN_WIDTH)
+	if(x<0 || x>SCREEN_WIDTH ||  y<0)
 		return 1;
 	//Let the player fall out of the bottom of the screen
 	if(y>SCREEN_HEIGHT)
@@ -102,7 +113,7 @@ function cellAtPixelCoord(layer, x,y)
 
 function cellAtTileCoord(layer, tx, ty)
 {
-	if(tx<0 || tx>MAP.tw)
+	if(tx<0 || tx>MAP.tw || ty<0)
 		return 1;
 	//Let the player fall out of the bottom of the screen
 	if(ty>=MAP.th)
@@ -183,14 +194,26 @@ function initialize()
 	}
 }
 
-initialize();
-
-function run()
+function runSplash(deltaTime)
 {
-	context.fillStyle = "#ccc";		
-	context.fillRect(0, 0, canvas.width, canvas.height);
-	
-	var deltaTime = getDeltaTime();
+	context.fillStyle = "#002e4d";
+	context.font = "80px Arial";
+	context.fillText("PLATFORMER", SCREEN_WIDTH/6, SCREEN_HEIGHT/2);
+	context.fillStyle = "black";
+	context.font = "40px Lucida Console";
+	context.fillText("Press SPACE to begin", SCREEN_WIDTH/6.2, SCREEN_HEIGHT/1.2);
+	if(space == true)
+	{
+		space = false;
+		gameState = STATE_GAME;
+		return;
+	}
+}
+
+
+function runGame(deltaTime)
+{
+
 
 	drawMap(currentLevel);
 	
@@ -215,6 +238,51 @@ function run()
 	context.font="14px Arial";
 	context.fillText("FPS: " + fps, 5, 20, 100);
 }
+
+initialize();
+
+function run()
+{
+
+	context.fillStyle = "#ccc";		
+	context.fillRect(0, 0, canvas.width, canvas.height);
+
+	var deltaTime = getDeltaTime();
+
+
+
+	if(keyboard.isKeyDown(keyboard.KEY_SPACE) == true)
+	{
+		space = true;
+	}
+	else
+	{
+		space = false;
+	}
+
+	if(keyboard.isKeyDown(keyboard.KEY_E) == true) 
+	{
+		retry = true;
+	}
+	else
+	{
+		retry = false;
+	}
+
+
+	switch(gameState)
+	{
+		case STATE_SPLASH:
+			runSplash(deltaTime)
+			break;
+		case STATE_GAME:
+			runGame(deltaTime)
+			break;
+	}
+}
+
+
+
 
 
 
