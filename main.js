@@ -198,10 +198,10 @@ function runSplash(deltaTime)
 {
 	context.fillStyle = "#002e4d";
 	context.font = "80px Arial";
-	context.fillText("PLATFORMER", SCREEN_WIDTH/6, SCREEN_HEIGHT/2);
+	context.fillText("PLATFORMER", SCREEN_WIDTH/11, SCREEN_HEIGHT/2);
 	context.fillStyle = "black";
 	context.font = "40px Lucida Console";
-	context.fillText("Press SPACE to begin", SCREEN_WIDTH/6.2, SCREEN_HEIGHT/1.2);
+	context.fillText("Press SPACE to begin", SCREEN_WIDTH/8, SCREEN_HEIGHT/1.2);
 	if(space == true)
 	{
 		space = false;
