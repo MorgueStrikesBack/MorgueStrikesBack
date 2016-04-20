@@ -72,7 +72,7 @@ var GRAVITY = METER * 9.8 * 6;
 var MAXDX = METER * 10;
 
 // max vertical speed (15 tiles per second)
-var MAXDY = METER * 15;
+var MAXDY = METER * 18;
 
 // horizontal acceleration - take 1/2 second to reach maxdx
 var ACCEL = MAXDX * 2;
