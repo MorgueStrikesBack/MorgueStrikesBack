@@ -1,7 +1,7 @@
 
 var Player = function() {
 	this.image = document.createElement("img");
-	this.position = new Vector2(canvas.width/2, canvas.height/2)
+	this.position = new Vector2(50, canvas.height/2)
 
 	this.velocity = new Vector2(0,0)
 	this.width = 159;
