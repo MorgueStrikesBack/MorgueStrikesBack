@@ -63,22 +63,20 @@ var TILESET_COUNT_Y = 14;
 var tileset = document.createElement("img");
 tileset.src = "tileset.png";
 
-var currentLevel = level1
-
 function drawMap()
 {
 	for(var layerIdx=0; layerIdx<LAYER_COUNT; layerIdx++)
 	{
 		var idx = 0;
-		for( var y = 0; y < currentLevel.layers[layerIdx].height; y++ )
+		for( var y = 0; y < level1.layers[layerIdx].height; y++ )
 		{
-			for( var x = 0; x < currentLevel.layers[layerIdx].width; x++ )
+			for( var x = 0; x < level1.layers[layerIdx].width; x++ )
 			{
-				if( currentLevel.layers[layerIdx].data[idx] != 0 )
+				if( level1.layers[layerIdx].data[idx] != 0 )
 				{
 					// the tiles in the Tiled map are base 1 (meaning a value of 0 means no tile), so subtract one from the tileset id to get the
 					// correct tile
-					var tileIndex = currentLevel.layers[layerIdx].data[idx] - 1;
+					var tileIndex = level1.layers[layerIdx].data[idx] - 1;
 					var sx = TILESET_PADDING + (tileIndex % TILESET_COUNT_X) * (TILESET_TILE + TILESET_SPACING);
 					var sy = TILESET_PADDING + (Math.floor(tileIndex / TILESET_COUNT_Y)) * (TILESET_TILE + TILESET_SPACING);
 					context.drawImage(tileset, sx, sy, TILESET_TILE, TILESET_TILE, x*TILE, (y-1)*TILE, TILESET_TILE, TILESET_TILE);
@@ -96,7 +94,7 @@ function run()
 	
 	var deltaTime = getDeltaTime();
 
-	drawMap(currentLevel);
+	drawMap();
 	
 	player.update(deltaTime);
 	player.draw();
