@@ -8,7 +8,7 @@ var Enemy = function() {
 	
 	this.sprite.buildAnimation(12, 1, 64, 56, 0.05,
 		[0, 1, 2, 3]);
-	
+
 	this.sprite.buildAnimation(12, 1, 64, 56, 0.05,
 		[4, 5, 6, 7, 8, 9, 10, 11]);
 
@@ -18,7 +18,7 @@ var Enemy = function() {
 	
 	for(var i=0; i<ANIM_MAX; i++)
 	{
-		this.sprite.setAnimationOffset(i, -55, -87);
+		this.sprite.setAnimationOffset(i, -32, -43);
 	}
 
 	this.position = new Vector2(58, 58)
@@ -32,6 +32,7 @@ var Enemy = function() {
 Enemy.prototype.update = function(deltaTime)
 {
 	this.sprite.update(deltaTime);
+
 	if( typeof(this.rotation) == "undefined" )
 		this.rotation = 0; 
 	if(keyboard.isKeyDown(keyboard.KEY_SPACE) == true)

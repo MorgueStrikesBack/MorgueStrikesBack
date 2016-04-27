@@ -47,12 +47,8 @@ var STATE_GAME = 1;
 
 var gameState = STATE_SPLASH;
 
-
-//variables
 var menuTimer = 0;
 var space = false;
-
-
 
 var score = 0;
 var highscore = 0;
@@ -223,7 +219,6 @@ function runGame(deltaTime)
 	
 	player.update(deltaTime);
 	player.draw();
-
 
 	enemy.update(deltaTime);
 	enemy.draw();
