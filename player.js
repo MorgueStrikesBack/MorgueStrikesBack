@@ -64,6 +64,8 @@ var Player = function() {
 	this.jumping = false;
 
 	this.direction = LEFT;
+
+	this.isDead = false;
 };
 
 Player.prototype.update = function(deltaTime)

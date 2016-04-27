@@ -8,7 +8,7 @@ var Enemy = function() {
 	
 	this.sprite.buildAnimation(12, 1, 64, 56, 0.05,
 		[0, 1, 2, 3]);
-	
+
 	this.sprite.buildAnimation(12, 1, 64, 56, 0.05,
 		[4, 5, 6, 7, 8, 9, 10, 11]);
 
@@ -31,6 +31,8 @@ var Enemy = function() {
 
 Enemy.prototype.update = function(deltaTime)
 {
+	this.sprite.update(deltaTime);
+	
 	if( typeof(this.rotation) == "undefined" )
 		this.rotation = 0; 
 	if(keyboard.isKeyDown(keyboard.KEY_SPACE) == true)
@@ -45,9 +47,5 @@ Enemy.prototype.update = function(deltaTime)
 
 Enemy.prototype.draw = function()
 {
-	context.save();
-		context.translate(this.position.x, this.position.y);
-		context.rotate(this.rotation);
-		context.drawImage(this.image, -this.width/2, -this.height/2);
-	context.restore();
+	this.sprite.draw(context, this.position.x, this.position.y);
 }
