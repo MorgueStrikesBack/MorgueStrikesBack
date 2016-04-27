@@ -113,7 +113,7 @@ function cellAtPixelCoord(layer, x,y)
 
 function cellAtTileCoord(layer, tx, ty)
 {
-	if(tx<0 || tx>MAP.tw || ty<0)
+	if(tx<0 || tx>MAP.tw || ty<0) 
 		return 1;
 	//Let the player fall out of the bottom of the screen
 	if(ty>=MAP.th)
