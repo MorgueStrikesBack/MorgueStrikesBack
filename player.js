@@ -19,7 +19,7 @@ var ANIM_MAX = 9;
 
 
 var Player = function() {
-	this.sprite = new Sprite("ChuckNorris.png");
+	this.sprite = new Sprite("Hero.png");
 	
 	this.sprite.buildAnimation(12, 8, 165, 126, 0.05,
 		[0, 1, 2, 3, 4, 5, 6, 7]);
@@ -90,7 +90,7 @@ Player.prototype.update = function(deltaTime)
 		this.direction = RIGHT;
 		if(this.sprite.currentAnimation != ANIM_WALK_RIGHT && this.jumping == false)
 			this.sprite.setAnimation(ANIM_WALK_RIGHT);
-
+		//console.log(this.sprite.currentAnimation)
 	}
 	else
 	{
