@@ -50,6 +50,15 @@ var gameState = STATE_SPLASH;
 var menuTimer = 0;
 var space = false;
 
+var livesImage = document.createElement("img");
+	livesImage.src = "HeartImage.png";
+
+var healthImage = document.createElement("img");
+	healthImage.src = "HealthImage.png";
+
+var lives = 3;
+var health = 5;
+
 var score = 0;
 var highscore = 0;
 
@@ -232,7 +241,22 @@ function runGame(deltaTime)
 		fps = fpsCount;
 		fpsCount = 0;
 	}		
-		
+	//draw the score
+	context.fillStyle = "red";
+	context.font="32px Comic Sans";
+	var scoreText = "Score: " + score;
+	context.fillText(scoreText, SCREEN_WIDTH - 140, 35);
+
+	for(var i=0; i<lives; i++)
+	{
+		context.drawImage(livesImage, 20 + ((livesImage.width+2)*i), 10);
+	}
+
+	for(var i=0; i<health; i++)
+	{
+		context.drawImage(healthImage, 25 + ((healthImage.width+2)*i), 70);
+	}
+
 	// draw the FPS
 	context.fillStyle = "#f00";
 	context.font="14px Arial";
