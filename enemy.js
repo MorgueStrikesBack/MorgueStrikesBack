@@ -1,7 +1,7 @@
 var ANIM_MOVING = 0;
 var ANIM_DYING = 1;
 
-var ANIM_MAX = 2;
+var ENEMY_ANIM_MAX = 2;
 
 var Enemy = function() {
 	this.sprite = new Sprite("BlueSpikey.png");
@@ -16,7 +16,7 @@ var Enemy = function() {
 	
 
 	
-	for(var i=0; i<ANIM_MAX; i++)
+	for(var i=0; i<ENEMY_ANIM_MAX; i++)
 	{
 		this.sprite.setAnimationOffset(i, -32, -43);
 	}

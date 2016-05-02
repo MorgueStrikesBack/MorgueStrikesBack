@@ -15,7 +15,7 @@ var ANIM_CLIMB = 6;
 var ANIM_SHOOT_LEFT = 7;
 var ANIM_SHOOT_RIGHT = 8;
 
-var ANIM_MAX = 9;
+var PLAYER_ANIM_MAX = 9;
 
 
 var Player = function() {
@@ -48,7 +48,7 @@ var Player = function() {
 	this.sprite.buildAnimation(12, 8, 165, 126, 0.05,
 		[79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92]);
 	
-	for(var i=0; i<ANIM_MAX; i++)
+	for(var i=0; i<PLAYER_ANIM_MAX; i++)
 	{
 		this.sprite.setAnimationOffset(i, -55, -87);
 	}
