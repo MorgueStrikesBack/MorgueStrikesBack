@@ -55,8 +55,11 @@ var Player = function() {
 
 	this.position = new Vector2(50, canvas.height/2)
 
+	this.sprite.x = this.position.x
+	this.sprite.y = this.position.y
 	this.velocity = new Vector2(0,0)
-	
+
+
 	this.width = 159;
 	this.height = 163;
 
@@ -226,9 +229,24 @@ Player.prototype.update = function(deltaTime)
 			}
 		}
 	}
+
+
+	if (this.direction == LEFT)
+	{
+		this.sprite.x = this.position.x - 20
+		this.sprite.y = this.position.y
+	}
+	else 
+	{
+		this.sprite.x = this.position.x
+		this.sprite.y = this.position.y
+	}
 }
 
 Player.prototype.draw = function()
 {
-	this.sprite.draw(context, this.position.x, this.position.y);
+	this.sprite.draw(context, this.sprite.x, this.sprite.y);
+
+	/*context.fillStyle = "blue"
+	context.fillRect(this.position.x, this.position.y, 35, 35)*/
 }

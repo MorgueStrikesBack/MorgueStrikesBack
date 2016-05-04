@@ -21,7 +21,7 @@ var Enemy = function() {
 		this.sprite.setAnimationOffset(i, -32, -43);
 	}
 
-	this.position = new Vector2(58, 58)
+	this.position = new Vector2(canvas.width/2, 58)
 
 	this.velocity = new Vector2(0,0)
 	
