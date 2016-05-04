@@ -44,6 +44,8 @@ var fpsTime = 0;
 //Game States
 var STATE_SPLASH = 0;
 var STATE_GAME = 1;
+var STATE_DIED = 2;
+var STATE_GAMEOVER = 3;
 
 var gameState = STATE_SPLASH;
 
@@ -262,6 +264,7 @@ function runGame(deltaTime)
 	context.font="14px Arial";
 	context.fillText("FPS: " + fps, 5, 20, 100);
 
+
 	//DEBUG DRAW LEVEL COLLISION DATA
 	/*function DrawLevelCollisionData(tileLayer) {
 	    for (var y = 0; y < level1.layers[tileLayer].height; y++) {
@@ -273,6 +276,95 @@ function runGame(deltaTime)
 	        }
 	    }
 	}*/
+
+	//death from falling out of the screen
+	if(player.position.y > SCREEN_HEIGHT)
+	{
+		health = 0
+	}
+
+	if (health <= 0)
+	{
+		player.isDead = true
+	}
+	else
+	{
+		player.isDead = false
+	}
+
+	if (player.isDead == true)
+	{
+		health = 5
+		lives -= 1
+
+		player.isDead = false
+
+		if(lives <= 0)
+		{
+			gameState = STATE_GAMEOVER;
+		}
+		else
+		{
+			gameState = STATE_DIED;
+		}
+		return;
+	}
+
+	
+}
+
+function runDied(deltaTime)
+{
+
+
+	context.fillStyle = "#4d0000"
+	context.font = "70px Unicorn";
+	context.fillText("You Died ", SCREEN_WIDTH/5, SCREEN_HEIGHT/3.5)
+	context.fillStyle = "black"
+	context.font = "40px Arial Black";
+	context.fillText("HighScore: " + highscore, SCREEN_WIDTH/3.5, SCREEN_HEIGHT/2)
+	context.font = "30px Arial Black";
+	context.fillText("Score: " + score, SCREEN_WIDTH/3.5, SCREEN_HEIGHT/1.5)
+	context.font = "40px Boulder";
+	context.fillText("Press E to try again", SCREEN_WIDTH/4, SCREEN_HEIGHT/1.2)
+	if(retry == true)
+	{
+		retry = false;
+		player.position.x = player.startPos.x
+		player.position.y = player.startPos.y
+		gameState = STATE_GAME;
+		return;
+	}
+}
+
+
+function runGameOver(deltaTime)
+{
+	//set the highscore
+	if(score >= highscore)
+	{
+		highscore = score;
+	}
+
+	context.fillStyle = "#4d0000"
+	context.font = "70px Unicorn";
+	context.fillText("GAME OVER ", SCREEN_WIDTH/5, SCREEN_HEIGHT/3.5)
+	context.fillStyle = "black"
+	context.font = "40px Arial Black";
+	context.fillText("HighScore: " + highscore, SCREEN_WIDTH/3.5, SCREEN_HEIGHT/2)
+	context.font = "30px Arial Black";
+	context.fillText("Score: " + score, SCREEN_WIDTH/3.5, SCREEN_HEIGHT/1.5)
+	context.font = "40px Boulder";
+	context.fillText("Press E to try again", SCREEN_WIDTH/4, SCREEN_HEIGHT/1.2)
+	if(retry == true)
+	{
+		retry = false;
+		player.position.x = player.startPos.x
+		player.position.y = player.startPos.y
+		lives = 3
+		gameState = STATE_GAME;
+		return;
+	}
 }
 
 initialize();
@@ -313,6 +405,12 @@ function run()
 			break;
 		case STATE_GAME:
 			runGame(deltaTime)
+			break;
+		case STATE_DIED:
+			runDied(deltaTime)
+			break;
+		case STATE_GAMEOVER:
+			runGameOver(deltaTime)
 			break;
 	}
 }

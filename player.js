@@ -54,7 +54,7 @@ var Player = function() {
 	}
 
 	this.position = new Vector2(50, canvas.height/2)
-
+	this.startPos = new Vector2(50, canvas.height/2)
 	this.sprite.x = this.position.x
 	this.sprite.y = this.position.y
 	this.velocity = new Vector2(0,0)
@@ -241,6 +241,8 @@ Player.prototype.update = function(deltaTime)
 		this.sprite.x = this.position.x
 		this.sprite.y = this.position.y
 	}
+
+
 }
 
 Player.prototype.draw = function()
