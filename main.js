@@ -243,9 +243,9 @@ function runGame(deltaTime)
 	}		
 	//draw the score
 	context.fillStyle = "red";
-	context.font="32px Comic Sans";
+	context.font="40px Comic Sans";
 	var scoreText = "Score: " + score;
-	context.fillText(scoreText, SCREEN_WIDTH - 140, 35);
+	context.fillText(scoreText, SCREEN_WIDTH - 200, 35);
 
 	for(var i=0; i<lives; i++)
 	{
@@ -261,6 +261,18 @@ function runGame(deltaTime)
 	context.fillStyle = "#f00";
 	context.font="14px Arial";
 	context.fillText("FPS: " + fps, 5, 20, 100);
+
+	//DEBUG DRAW LEVEL COLLISION DATA
+	/*function DrawLevelCollisionData(tileLayer) {
+	    for (var y = 0; y < level1.layers[tileLayer].height; y++) {
+	        for (var x = 0; x < level1.layers[tileLayer].width; x++) {
+	            if (cells[tileLayer][y][x] == 1) {
+	                context.fillStyle = "#F00";
+	                context.fillRect(TILE * x, TILE * y, TILE, TILE);
+	            }
+	        }
+	    }
+	}*/
 }
 
 initialize();
