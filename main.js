@@ -228,20 +228,48 @@ function initialize()
 		}
 	}
 
-	musicBackground = new Howl(
+	backgroundLoop = new Howl(
 	{
-		urls: ["background.ogg"],
-		loop: true,
+	    urls: ["backgroundLoop.ogg"],
+	    loop: true,
+	    buffer: true,
+	    volume: 0.5
+
+	});
+
+	backgroundIntro = new Howl(
+	{
+		urls: ["backgroundIntro.ogg"],
+		loop: false,
 		buffer: true,
-		volume: 0.5
+		volume: 0.5,
+		onend: function()
+		{
+			backgroundIntro.stop()
+			backgroundLoop.play()
+		}
 	} );
-	musicBackground.play();
+	backgroundIntro.play();
+
+
 
 	sfxFire = new Howl(
 	{
 		urls: ["fireEffect.ogg"],
 		buffer: true,
-		volume: 1,
+		volume: 0.4,
+		onend: function()
+		{
+			isSfxPlaying = false;
+		}
+
+	} );
+
+	sfxJump = new Howl(
+	{
+		urls: ["jumpEffect.ogg"],
+		buffer: true,
+		volume: 0.2,
 		onend: function()
 		{
 			isSfxPlaying = false;

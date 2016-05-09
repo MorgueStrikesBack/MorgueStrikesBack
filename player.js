@@ -117,6 +117,7 @@ Player.prototype.update = function(deltaTime)
 	if(keyboard.isKeyDown(keyboard.KEY_UP) == true) 
 	{
 		jump = true;
+
 		if(left == true)
 		{
 			this.sprite.setAnimation(ANIM_JUMP_LEFT)
@@ -169,6 +170,7 @@ Player.prototype.update = function(deltaTime)
 	if (jump && !this.jumping && !falling)
 	{
 		ddy = ddy - JUMP; // apply an instantaneous (large) vertical impulse
+		sfxJump.play();		
 		this.jumping = true;
 		if(this.direction == LEFT)
 			this.sprite.setAnimation(ANIM_JUMP_LEFT)
