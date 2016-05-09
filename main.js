@@ -154,21 +154,42 @@ function bound(value, min, max)
 
 function drawMap()
 {
+	var maxTiles = Math.floor(SCREEN_WIDTH / TILE) + 2;
+	var tileX = pixelToTile(player.position.x);
+	var offsetX = TILE + Math.floor(player.position.x%TILE);
+
+	startX = tileX - Math.floor(maxTiles / 2);
+
+	if(startX < -1)
+	{
+		startX = 0;
+		offsetX = 0;
+	}
+
+	if(startX > MAP.tw - maxTiles)
+	{
+		startX = MAP.tw - maxTiles + 1;
+		offsetX = TILE;
+	}
+
+	worldOffsetX = startX * TILE + offsetX;
+
 	for(var layerIdx=0; layerIdx<LAYER_COUNT; layerIdx++)
 	{
-		var idx = 0;
 		for( var y = 0; y < currentLevel.layers[layerIdx].height; y++ )
 		{
-			for( var x = 0; x < currentLevel.layers[layerIdx].width; x++ )
+			var idx = y * currentLevel.layers[layerIdx].width + startX;
+			for( var x = startX; x < startX + maxTiles; x++ )
 			{
 				if( currentLevel.layers[layerIdx].data[idx] != 0 )
 				{
 					// the tiles in the Tiled map are base 1 (meaning a value of 0 means no tile), so subtract one from the tileset id to get the
+					// so subtract one from the tileset id to get the
 					// correct tile
 					var tileIndex = currentLevel.layers[layerIdx].data[idx] - 1;
 					var sx = TILESET_PADDING + (tileIndex % TILESET_COUNT_X) * (TILESET_TILE + TILESET_SPACING);
 					var sy = TILESET_PADDING + (Math.floor(tileIndex / TILESET_COUNT_Y)) * (TILESET_TILE + TILESET_SPACING);
-					context.drawImage(tileset, sx, sy, TILESET_TILE, TILESET_TILE, x*TILE, (y-1)*TILE, TILESET_TILE, TILESET_TILE);
+					context.drawImage(tileset, sx, sy, TILESET_TILE, TILESET_TILE, (x-startX)*TILE - offsetX, (y-1)*TILE, TILESET_TILE, TILESET_TILE);
 				}
 				idx++;
 			}

@@ -247,7 +247,7 @@ Player.prototype.update = function(deltaTime)
 
 Player.prototype.draw = function()
 {
-	this.sprite.draw(context, this.sprite.x, this.sprite.y);
+	this.sprite.draw(context, this.sprite.x - worldOffsetX, this.sprite.y);
 
 	/*context.fillStyle = "blue"
 	context.fillRect(this.position.x, this.position.y, 35, 35)*/
