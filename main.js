@@ -249,7 +249,8 @@ function initialize()
 			backgroundLoop.play()
 		}
 	} );
-	backgroundIntro.play();
+
+
 
 
 
@@ -277,6 +278,29 @@ function initialize()
 
 	} );
 
+	sfxPlayerDeath = new Howl(
+	{
+		urls: ["playerDeath.ogg"],
+		buffer: true,
+		volume: 0.2,
+		onend: function()
+		{
+			isSfxPlaying = false;
+		}
+
+	} );
+
+	sfxBegin = new Howl(
+	{
+		urls: ["begin.ogg"],
+		buffer: true,
+		volume: 0.2,
+		onend: function()
+		{
+			isSfxPlaying = false;
+		}
+
+	} );
 }
 
 function runSplash(deltaTime)
@@ -290,6 +314,8 @@ function runSplash(deltaTime)
 	if(space == true)
 	{
 		space = false;
+		sfxBegin.play();
+		backgroundIntro.play();
 		gameState = STATE_GAME;
 		return;
 	}
@@ -369,6 +395,9 @@ function runGame(deltaTime)
 
 	if (player.isDead == true)
 	{
+		sfxPlayerDeath.play()
+		backgroundIntro.stop()
+		backgroundLoop.stop()
 		health = 5
 		lives -= 1
 
@@ -407,6 +436,8 @@ function runDied(deltaTime)
 		retry = false;
 		player.position.x = player.startPos.x
 		player.position.y = player.startPos.y
+		sfxBegin.play();
+		backgroundIntro.play()
 		gameState = STATE_GAME;
 		return;
 	}
@@ -436,6 +467,8 @@ function runGameOver(deltaTime)
 		retry = false;
 		player.position.x = player.startPos.x
 		player.position.y = player.startPos.y
+		sfxBegin.play();
+		backgroundIntro.play()
 		lives = 3
 		gameState = STATE_GAME;
 		return;

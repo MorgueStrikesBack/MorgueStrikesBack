@@ -120,7 +120,7 @@ Player.prototype.update = function(deltaTime)
 
 		if(left == true)
 		{
-			this.sprite.setAnimation(ANIM_JUMP_LEFT)
+				this.sprite.setAnimation(ANIM_JUMP_LEFT)
 		}
 
 		if(right == true)
@@ -141,12 +141,14 @@ Player.prototype.update = function(deltaTime)
 		// Shoot a bullet
 		if(left == true)
 		{
-			this.sprite.setAnimation(ANIM_SHOOT_LEFT)
+			if(this.sprite.currentAnimation != ANIM_SHOOT_LEFT)
+				this.sprite.setAnimation(ANIM_SHOOT_LEFT)
 		}
 
 		if(right == true)
 		{
-			this.sprite.setAnimation(ANIM_SHOOT_RIGHT)
+			if(this.sprite.currentAnimation != ANIM_SHOOT_RIGHT)
+				this.sprite.setAnimation(ANIM_SHOOT_RIGHT)
 		}		
 	}
 
