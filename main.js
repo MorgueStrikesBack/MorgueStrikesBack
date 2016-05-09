@@ -246,10 +246,11 @@ function runSplash(deltaTime)
 function runGame(deltaTime)
 {
 
-
+	player.update(deltaTime);
+	
 	drawMap(currentLevel);
 	
-	player.update(deltaTime);
+	
 	player.draw();
 
 	enemy.update(deltaTime);
