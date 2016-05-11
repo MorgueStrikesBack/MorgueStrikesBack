@@ -39,7 +39,7 @@ var Enemy = function(x, y) {
 Enemy.prototype.update = function(deltaTime)
 {
 	this.sprite.update(deltaTime);
-
+	
 	if( this.pause > 0)
 	{
 		this.pause -= deltaTime;
@@ -98,6 +98,7 @@ Enemy.prototype.update = function(deltaTime)
 Enemy.prototype.draw = function()
 {
 this.sprite.draw(context, this.position.x - worldOffsetX, this.position.y);
+
 }
 
 Enemy.prototype.death = function(deltaTime)

@@ -5,7 +5,10 @@ var Bullet = function(x, y, left, right)
 	this.sprite.setAnimationOffset(0, 0, 0);
 	this.sprite.setLoop(0, false);
 
-	this.position = new Vector2();
+
+
+
+	this.position = new Vector2(x, y);
 
 	this.velocity = new Vector2();
 	this.left = left;

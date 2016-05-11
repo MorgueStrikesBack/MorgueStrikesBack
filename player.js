@@ -140,7 +140,7 @@ Player.prototype.update = function(deltaTime)
 		this.cooldownTimer = 0.3;
 		// Shoot a bullet
 
-			bullets.push(Bullet)
+		bullets.push(new Bullet(player.position.x,player.position.y,left,right))
 
 	}
 

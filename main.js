@@ -121,6 +121,17 @@ tileset.src = "tileset.png";
 
 var currentLevel = level1
 
+function intersects(x1, y1, w1, h1, x2, y2, w2, h2)
+{
+	if(y2 + h2 < y1 ||
+	x2 + w2 < x1 ||
+	x2> x1 + w1 ||
+	y2 > y1 + h1)
+	{
+		return false;
+	}
+	return true;
+}
 
 function cellAtPixelCoord(layer, x,y)
 {
@@ -361,13 +372,14 @@ function runGame(deltaTime)
 	for(var i=0; i<enemies.length; i++)
 	{
 		enemies[i].update(deltaTime);
+		//console.log(i)
 	}
 
 	for(var i=0; i<enemies.length; i++)
 	{
 		enemies[i].draw();
 	}
-
+	console.log(bullets.length)
 	for(var i=0; i<bullets.length; i++)
 	{
 		bullets[i].update(deltaTime);
@@ -473,16 +485,18 @@ function runGame(deltaTime)
 			{
 
 			// kill both the bullet and the enemy
+			enemies[j].death(deltaTime);
 			enemies.splice(j, 1);
+
 			hit = true;
 			// increment the player score
-			score += 1;
+			
 			break;
 			}
 		}
 		if(hit == true)
 		{
-			bullets[i].death(deltaTime);	
+	
 			bullets.splice(i, 1);
 			break;
 		}
