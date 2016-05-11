@@ -509,12 +509,10 @@ function runDied(deltaTime)
 
 	context.fillStyle = "#4d0000"
 	context.font = "70px Unicorn";
-	context.fillText("You Died ", SCREEN_WIDTH/5, SCREEN_HEIGHT/3.5)
-	context.fillStyle = "black"
-	context.font = "40px Arial Black";
-	context.fillText("HighScore: " + highscore, SCREEN_WIDTH/3.5, SCREEN_HEIGHT/2)
+	context.fillText("You Died ", SCREEN_WIDTH/3.5, SCREEN_HEIGHT/3.5)
 	context.font = "30px Arial Black";
-	context.fillText("Score: " + score, SCREEN_WIDTH/3.5, SCREEN_HEIGHT/1.5)
+	context.fillStyle = "black"
+	context.fillText("Current Score: " + score, SCREEN_WIDTH/3.5, SCREEN_HEIGHT/1.5)
 	context.font = "40px Boulder";
 	context.fillText("Press E to try again", SCREEN_WIDTH/4, SCREEN_HEIGHT/1.2)
 	if(retry == true)
@@ -543,9 +541,9 @@ function runGameOver(deltaTime)
 	context.fillText("GAME OVER ", SCREEN_WIDTH/5, SCREEN_HEIGHT/3.5)
 	context.fillStyle = "black"
 	context.font = "40px Arial Black";
-	context.fillText("HighScore: " + highscore, SCREEN_WIDTH/3.5, SCREEN_HEIGHT/2)
+	context.fillText("HighScore: " + highscore, SCREEN_WIDTH/3.5, SCREEN_HEIGHT/1.5)
 	context.font = "30px Arial Black";
-	context.fillText("Score: " + score, SCREEN_WIDTH/3.5, SCREEN_HEIGHT/1.5)
+	context.fillText("Score: " + score, SCREEN_WIDTH/3.5, SCREEN_HEIGHT/2)
 	context.font = "40px Boulder";
 	context.fillText("Press E to try again", SCREEN_WIDTH/4, SCREEN_HEIGHT/1.2)
 	if(retry == true)
