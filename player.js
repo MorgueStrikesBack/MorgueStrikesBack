@@ -134,22 +134,14 @@ Player.prototype.update = function(deltaTime)
 		this.cooldownTimer -= deltaTime;
 	}
 
-	if(keyboard.isKeyDown(keyboard.KEY_SPACE) == true && this.cooldownTimer <= 0)
+	if(keyboard.isKeyDown(keyboard.KEY_SHIFT) == true && this.cooldownTimer <= 0)
 	{
 		sfxFire.play();
 		this.cooldownTimer = 0.3;
 		// Shoot a bullet
-		if(left == true)
-		{
-			if(this.sprite.currentAnimation != ANIM_SHOOT_LEFT)
-				this.sprite.setAnimation(ANIM_SHOOT_LEFT)
-		}
 
-		if(right == true)
-		{
-			if(this.sprite.currentAnimation != ANIM_SHOOT_RIGHT)
-				this.sprite.setAnimation(ANIM_SHOOT_RIGHT)
-		}		
+			bullets.push(Bullet)
+
 	}
 
 

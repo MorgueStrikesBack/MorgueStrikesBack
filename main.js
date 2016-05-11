@@ -66,14 +66,24 @@ var highscore = 0;
 
 var retry = false;
 
-var enemy = new Enemy();
+
 var player = new Player();
 var keyboard = new Keyboard();
+
+var ENEMY_MAXDX = METER * 5;
+var ENEMY_ACCEL = ENEMY_MAXDX * 2;
+
+var enemies = [];
+var bullets = [];
 
 var LAYER_COUNT = 3;
 var LAYER_BACKGOUND = 0;
 var LAYER_PLATFORMS = 1;
 var LAYER_LADDERS = 2;
+
+var LAYER_OBJECT_ENEMIES = 3;
+var LAYER_OBJECT_TRIGGERS = 4;
+
 var MAP = {tw: 60, th: 15};
 var TILE = 35;
 var TILESET_TILE = TILE * 2;
@@ -228,6 +238,22 @@ function initialize()
 		}
 	}
 
+	idx = 0;
+	for(var y = 0; y < currentLevel.layers[LAYER_OBJECT_ENEMIES].height; y++) 
+	{
+		for(var x = 0; x <  currentLevel.layers[LAYER_OBJECT_ENEMIES].width; x++)
+		{
+			if( currentLevel.layers[LAYER_OBJECT_ENEMIES].data[idx] != 0)
+			{
+				var px = tileToPixel(x);
+				var py = tileToPixel(y);
+				var e = new Enemy(px, py);
+				enemies.push(e);
+			}
+			idx++;
+		}
+	} 
+
 	backgroundLoop = new Howl(
 	{
 	    urls: ["backgroundLoop.ogg"],
@@ -332,9 +358,27 @@ function runGame(deltaTime)
 	
 	player.draw();
 
-	enemy.update(deltaTime);
-	enemy.draw();
-		
+	for(var i=0; i<enemies.length; i++)
+	{
+		enemies[i].update(deltaTime);
+	}
+
+	for(var i=0; i<enemies.length; i++)
+	{
+		enemies[i].draw();
+	}
+
+	for(var i=0; i<bullets.length; i++)
+	{
+		bullets[i].update(deltaTime);
+	}
+
+	for(var i=0; i<bullets.length; i++)
+	{
+		bullets[i].draw();
+	}
+
+
 	// update the frame counter 
 	fpsTime += deltaTime;
 	fpsCount++;
@@ -414,7 +458,35 @@ function runGame(deltaTime)
 		return;
 	}
 
-	
+	var hit=false;
+	for(var i=0; i<bullets.length; i++)
+	{
+		bullets[i].update(deltaTime);
+		if( bullets[i].position.x - worldOffsetX < 0 || bullets[i].position.x - worldOffsetX > SCREEN_WIDTH)
+		{
+			hit = true;
+		}
+
+		for(var j=0; j<enemies.length; j++)
+		{
+			if(intersects( bullets[i].position.x, bullets[i].position.y, TILE, TILE, enemies[j].position.x, enemies[j].position.y, TILE, TILE) == true)
+			{
+
+			// kill both the bullet and the enemy
+			enemies.splice(j, 1);
+			hit = true;
+			// increment the player score
+			score += 1;
+			break;
+			}
+		}
+		if(hit == true)
+		{
+			bullets[i].death(deltaTime);	
+			bullets.splice(i, 1);
+			break;
+		}
+	}
 }
 
 function runDied(deltaTime)
