@@ -75,6 +75,7 @@ var ENEMY_ACCEL = ENEMY_MAXDX * 2;
 
 var enemies = [];
 var bullets = [];
+var triggers = [];
 
 var LAYER_COUNT = 3;
 var LAYER_BACKGOUND = 0;
@@ -265,6 +266,22 @@ function initialize()
 		}
 	} 
 
+	idx = 0;
+	for(var y = 0; y < currentLevel.layers[LAYER_OBJECT_TRIGGERS].height; y++) 
+	{
+		for(var x = 0; x <  currentLevel.layers[LAYER_OBJECT_TRIGGERS].width; x++)
+		{
+			if( currentLevel.layers[LAYER_OBJECT_TRIGGERS].data[idx] != 0)
+			{
+				var px = tileToPixel(x);
+				var py = tileToPixel(y);
+				var t = new Trigger(px, py);
+				triggers.push(t);
+			}
+			idx++;
+		}
+	} 
+
 	backgroundLoop = new Howl(
 	{
 	    urls: ["backgroundLoop.ogg"],
@@ -369,6 +386,12 @@ function runGame(deltaTime)
 	
 	player.draw();
 
+	for(var k=0; k<triggers.length; k++)
+	{
+		triggers[k].draw();
+		//console.log(k)
+	}
+
 	for(var i=0; i<enemies.length; i++)
 	{
 		enemies[i].update(deltaTime);
@@ -434,6 +457,27 @@ function runGame(deltaTime)
 	    }
 	}*/
 
+	//DEBUG DRAW LEVEL COLLISION DATA
+	function DrawLevelCollisionData() {
+	    for (var y = 0; y < currentLevel.layers[LAYER_OBJECT_TRIGGERS].height; y++) {
+	        for (var x = 0; x < currentLevel.layers[LAYER_OBJECT_TRIGGERS].width; x++) {
+	            if (cells[LAYER_OBJECT_TRIGGERS][y][x] == 1) {
+	                context.fillStyle = "#F00";
+	                context.fillRect(TILE * x, TILE * y, TILE, TILE);
+	            }
+	        }
+	    }
+	}
+
+	for(var k=0; k<triggers.length; k++)
+	{
+
+
+		if(intersects(player.position.x - player.width/2, player.position.y - player.height/2, triggers[k].position.x, triggers[k].position.y, TILE, TILE) == true)
+			{
+				gamestate = STATE_GAMEOVER;
+			}
+	}
 	//death from falling out of the screen
 	if(player.position.y > SCREEN_HEIGHT)
 	{

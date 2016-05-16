@@ -1,4 +1,4 @@
-var Bullet = function(x, y, left, right)
+var Bullet = function(x, y, direction)
 {
 	this.sprite = new Sprite("bullet.png");
 	this.sprite.buildAnimation(1, 1, 32, 32, -1, [0]);
@@ -6,19 +6,18 @@ var Bullet = function(x, y, left, right)
 	this.sprite.setLoop(0, false);
 
 
-
+	this.direction = direction;
 
 	this.position = new Vector2(x, y);
 
 	this.velocity = new Vector2();
-	this.left = left;
-	this.right = right;
 
-	if(this.right == true)
+
+	if(this.direction == 1)
 	{
 		this.velocity.Set(MAXDX * 2, 0);
 	}
-	else if(this.left == true)
+	else if(this.direction == 0)
 	{
 		this.velocity.Set(-MAXDX * 2, 0);
 	}
