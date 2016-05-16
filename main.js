@@ -259,7 +259,7 @@ function initialize()
 			{
 				var px = tileToPixel(x);
 				var py = tileToPixel(y);
-				var e = new Enemy(px, py);
+				var e = new Enemy(px , py);
 				enemies.push(e);
 			}
 			idx++;
@@ -275,6 +275,7 @@ function initialize()
 			{
 				var px = tileToPixel(x);
 				var py = tileToPixel(y);
+				console.log(px, py)
 				var t = new Trigger(px, py);
 				triggers.push(t);
 			}
@@ -479,14 +480,16 @@ function runGame(deltaTime)
 
 	for(var k=0; k<triggers.length; k++)
 	{
+		context.fillStyle = "red"
+		context.fillRect(triggers[k].position.x - worldOffsetX, triggers[k].position.y, 35, 35)
 
-
-		if(intersects(player.position.x, player.position.y, triggers[k].position.x, triggers[k].position.y, TILE, TILE) == false)
+		if(intersects(player.position.x, player.position.y, triggers[k].position.x - worldOffsetX, triggers[k].position.y, TILE, TILE) == false)
 			{
 				console.log(player.position.x, player.position.y, triggers[k].position.x, triggers[k].position.y)
 				gameState = STATE_GAMEOVER;
 					context.fillStyle = "blue"
 					context.fillRect(triggers[k].position.x, triggers[k].position.y, 35, 35)
+
 			}
 	}
 	//death from falling out of the screen
