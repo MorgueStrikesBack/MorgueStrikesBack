@@ -355,6 +355,19 @@ function initialize()
 		}
 
 	} );
+
+	sfxLevelComplete = new Howl(
+	{
+		urls: ["levelComplete.ogg"],
+		buffer: true,
+		volume: 0.2,
+		onend: function()
+		{
+			isSfxPlaying = false;
+		}
+
+	} );
+
 }
 
 function runSplash(deltaTime)
@@ -386,11 +399,6 @@ function runGame(deltaTime)
 	
 	player.draw();
 
-	for(var k=0; k<triggers.length; k++)
-	{
-		triggers[k].draw();
-		//console.log(k)
-	}
 
 	for(var i=0; i<enemies.length; i++)
 	{
@@ -402,7 +410,7 @@ function runGame(deltaTime)
 	{
 		enemies[i].draw();
 	}
-	console.log(bullets.length)
+	//console.log(bullets.length)
 	for(var i=0; i<bullets.length; i++)
 	{
 		bullets[i].update(deltaTime);
@@ -473,9 +481,12 @@ function runGame(deltaTime)
 	{
 
 
-		if(intersects(player.position.x - player.width/2, player.position.y - player.height/2, triggers[k].position.x, triggers[k].position.y, TILE, TILE) == true)
+		if(intersects(player.position.x, player.position.y, triggers[k].position.x, triggers[k].position.y, TILE, TILE) == false)
 			{
-				gamestate = STATE_GAMEOVER;
+				console.log(player.position.x, player.position.y, triggers[k].position.x, triggers[k].position.y)
+				gameState = STATE_GAMEOVER;
+					context.fillStyle = "blue"
+					context.fillRect(triggers[k].position.x, triggers[k].position.y, 35, 35)
 			}
 	}
 	//death from falling out of the screen
