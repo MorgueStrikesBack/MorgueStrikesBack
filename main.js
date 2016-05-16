@@ -46,6 +46,7 @@ var STATE_SPLASH = 0;
 var STATE_GAME = 1;
 var STATE_DIED = 2;
 var STATE_GAMEOVER = 3;
+var STATE_VICTORY = 4;
 
 var gameState = STATE_SPLASH;
 
@@ -61,7 +62,7 @@ var healthImage = document.createElement("img");
 var lives = 3;
 var health = 5;
 
-var score = 0;
+var score = 5000;
 var highscore = 0;
 
 var retry = false;
@@ -375,7 +376,10 @@ function runSplash(deltaTime)
 {
 	context.fillStyle = "#002e4d";
 	context.font = "80px Arial";
-	context.fillText("PLATFORMER", SCREEN_WIDTH/11, SCREEN_HEIGHT/2);
+	context.fillText("PLATFORMER", SCREEN_WIDTH/11, SCREEN_HEIGHT/3);
+	context.fillStyle = "GREEN"
+	context.font = "50px Arial";
+	context.fillText("Race to the finish", SCREEN_WIDTH/6, SCREEN_HEIGHT/2);
 	context.fillStyle = "black";
 	context.font = "40px Lucida Console";
 	context.fillText("Press SPACE to begin", SCREEN_WIDTH/8, SCREEN_HEIGHT/1.2);
@@ -400,6 +404,7 @@ function runGame(deltaTime)
 	
 	player.draw();
 
+	score -= 1
 
 	for(var i=0; i<enemies.length; i++)
 	{
@@ -467,7 +472,7 @@ function runGame(deltaTime)
 	}*/
 
 	//DEBUG DRAW LEVEL COLLISION DATA
-	function DrawLevelCollisionData() {
+	/*function DrawLevelCollisionData() {
 	    for (var y = 0; y < currentLevel.layers[LAYER_OBJECT_TRIGGERS].height; y++) {
 	        for (var x = 0; x < currentLevel.layers[LAYER_OBJECT_TRIGGERS].width; x++) {
 	            if (cells[LAYER_OBJECT_TRIGGERS][y][x] == 1) {
@@ -476,20 +481,18 @@ function runGame(deltaTime)
 	            }
 	        }
 	    }
-	}
+	}*/
 
 	for(var k=0; k<triggers.length; k++)
 	{
-		context.fillStyle = "red"
-		context.fillRect(triggers[k].position.x - worldOffsetX, triggers[k].position.y, 35, 35)
-
-		if(intersects(player.position.x, player.position.y, triggers[k].position.x - worldOffsetX, triggers[k].position.y, TILE, TILE) == false)
+		
+		if(intersects(player.position.x, player.position.y, player.width, player.height, triggers[k].position.x , triggers[k].position.y, TILE, TILE) == true)
 			{
-				console.log(player.position.x, player.position.y, triggers[k].position.x, triggers[k].position.y)
-				gameState = STATE_GAMEOVER;
-					context.fillStyle = "blue"
-					context.fillRect(triggers[k].position.x, triggers[k].position.y, 35, 35)
-
+				backgroundIntro.stop()
+				backgroundLoop.stop()
+				sfxLevelComplete.play()
+				gameState = STATE_VICTORY;
+					
 			}
 	}
 	//death from falling out of the screen
@@ -514,7 +517,7 @@ function runGame(deltaTime)
 		backgroundLoop.stop()
 		health = 5
 		lives -= 1
-
+		score = 0
 		player.isDead = false
 
 		if(lives <= 0)
@@ -570,12 +573,12 @@ function runDied(deltaTime)
 	context.fillText("You Died ", SCREEN_WIDTH/3.5, SCREEN_HEIGHT/3.5)
 	context.font = "30px Arial Black";
 	context.fillStyle = "black"
-	context.fillText("Current Score: " + score, SCREEN_WIDTH/3.5, SCREEN_HEIGHT/1.5)
 	context.font = "40px Boulder";
 	context.fillText("Press E to try again", SCREEN_WIDTH/4, SCREEN_HEIGHT/1.2)
 	if(retry == true)
 	{
 		retry = false;
+		score = 5000;
 		player.position.x = player.startPos.x
 		player.position.y = player.startPos.y
 		sfxBegin.play();
@@ -589,14 +592,47 @@ function runDied(deltaTime)
 function runGameOver(deltaTime)
 {
 	//set the highscore
+
+
+	context.fillStyle = "#4d0000"
+	context.font = "70px Unicorn";
+	context.fillText("GAME OVER ", SCREEN_WIDTH/5, SCREEN_HEIGHT/3.8)
+
+	context.fillText("GAME OVER ", SCREEN_WIDTH/5, SCREEN_HEIGHT/2.6)
+
+	context.fillText("GAME OVER ", SCREEN_WIDTH/5, SCREEN_HEIGHT/1.8)
+	context.fillStyle = "Black";
+	context.font = "40px Boulder";
+	context.fillText("Press E to try again", SCREEN_WIDTH/4, SCREEN_HEIGHT/1.2)
+
+	if(retry == true)
+	{
+		retry = false;
+		score = 5000;
+		player.position.x = player.startPos.x
+		player.position.y = player.startPos.y
+		sfxBegin.play();
+		backgroundIntro.play()
+		lives = 3
+		gameState = STATE_GAME;
+		return;
+	}
+}
+
+
+
+
+function runVictory(deltaTime)
+{
+	//set the highscore
 	if(score >= highscore)
 	{
 		highscore = score;
 	}
 
-	context.fillStyle = "#4d0000"
+	context.fillStyle = "GREEN"
 	context.font = "70px Unicorn";
-	context.fillText("GAME OVER ", SCREEN_WIDTH/5, SCREEN_HEIGHT/3.5)
+	context.fillText("VICTORY", SCREEN_WIDTH/5, SCREEN_HEIGHT/3.5)
 	context.fillStyle = "black"
 	context.font = "40px Arial Black";
 	context.fillText("HighScore: " + highscore, SCREEN_WIDTH/3.5, SCREEN_HEIGHT/1.5)
@@ -607,6 +643,7 @@ function runGameOver(deltaTime)
 	if(retry == true)
 	{
 		retry = false;
+		score = 5000;
 		player.position.x = player.startPos.x
 		player.position.y = player.startPos.y
 		sfxBegin.play();
@@ -661,6 +698,9 @@ function run()
 			break;
 		case STATE_GAMEOVER:
 			runGameOver(deltaTime)
+			break;
+		case STATE_VICTORY:
+			runVictory(deltaTime)
 			break;
 	}
 }
