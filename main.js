@@ -284,6 +284,11 @@ function initialize()
 			idx++;
 		}
 	} 
+}
+
+function initializeMusic()
+{
+
 
 	backgroundLoop = new Howl(
 	{
@@ -708,6 +713,7 @@ function runIntermission(deltaTime)
 }
 
 initialize();
+initializeMusic();
 
 function run()
 {
