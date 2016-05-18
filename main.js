@@ -61,7 +61,7 @@ var healthImage = document.createElement("img");
 	healthImage.src = "HealthImage.png";
 
 var lives = 3;
-var health = 5;
+var ammo = 5;
 
 var score = 5000;
 var highscore = 0;
@@ -449,7 +449,7 @@ function runGame(deltaTime)
 		context.drawImage(livesImage, 20 + ((livesImage.width+2)*i), 10);
 	}
 
-	for(var i=0; i<health; i++)
+	for(var i=0; i<ammo; i++)
 	{
 		context.drawImage(healthImage, 25 + ((healthImage.width+2)*i), 70);
 	}
@@ -509,24 +509,18 @@ function runGame(deltaTime)
 	//death from falling out of the screen
 	if(player.position.y > SCREEN_HEIGHT)
 	{
-		health = 0
-	}
-
-	if (health <= 0)
-	{
 		player.isDead = true
 	}
-	else
-	{
-		player.isDead = false
-	}
+
+
+
 
 	if (player.isDead == true)
 	{
 		sfxPlayerDeath.play()
 		backgroundIntro.stop()
 		backgroundLoop.stop()
-		health = 5
+		ammo = 5
 		lives -= 1
 		score = 0
 		player.isDead = false
@@ -594,6 +588,7 @@ function runDied(deltaTime)
 		player.position.y = player.startPos.y
 		sfxBegin.play();
 		backgroundIntro.play()
+		ammo = 5;
 		gameState = STATE_GAME;
 		return;
 	}
@@ -624,6 +619,7 @@ function runGameOver(deltaTime)
 		player.position.y = player.startPos.y
 		sfxBegin.play();
 		backgroundIntro.play()
+		ammo = 5
 		lives = 3
 		currentLevel = level1
 		gameState = STATE_GAME;
@@ -661,6 +657,7 @@ function runVictory(deltaTime)
 		sfxBegin.play();
 		currentLevel = level1
 		backgroundIntro.play()
+		ammo = 5
 		lives = 3
 		initialize();
 		gameState = STATE_GAME;
@@ -687,6 +684,7 @@ function runIntermission(deltaTime)
 		score = 5000;
 		player.position.x = player.startPos.x
 		player.position.y = player.startPos.y
+		ammo += 2
 		sfxBegin.play();
 		backgroundIntro.play()
 		initialize();
