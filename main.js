@@ -700,7 +700,7 @@ function runIntermission(deltaTime)
 		backgroundIntro.stop()
 		backgroundLoop.stop()
 		retry = false;
-		score = 5000;
+		score += 2000;
 		player.position.x = player.startPos.x
 		player.position.y = player.startPos.y
 		ammo += 2
