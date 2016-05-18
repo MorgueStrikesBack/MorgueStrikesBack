@@ -571,7 +571,8 @@ function runGame(deltaTime)
 
 function runDied(deltaTime)
 {
-
+	backgroundIntro.stop()
+	backgroundLoop.stop()
 
 	context.fillStyle = "#4d0000"
 	context.font = "70px Unicorn";
@@ -582,6 +583,8 @@ function runDied(deltaTime)
 	context.fillText("Press E to try again", SCREEN_WIDTH/4, SCREEN_HEIGHT/1.2)
 	if(retry == true)
 	{
+		backgroundIntro.stop()
+		backgroundLoop.stop()
 		retry = false;
 		score = 5000;
 		player.position.x = player.startPos.x
@@ -598,7 +601,8 @@ function runDied(deltaTime)
 function runGameOver(deltaTime)
 {
 	//set the highscore
-
+	backgroundIntro.stop()
+	backgroundLoop.stop()
 
 	context.fillStyle = "#4d0000"
 	context.font = "70px Unicorn";
@@ -613,6 +617,8 @@ function runGameOver(deltaTime)
 
 	if(retry == true)
 	{
+		backgroundIntro.stop()
+		backgroundLoop.stop()
 		retry = false;
 		score = 5000;
 		player.position.x = player.startPos.x
@@ -622,6 +628,7 @@ function runGameOver(deltaTime)
 		ammo = 5
 		lives = 3
 		currentLevel = level1
+		initialize();
 		gameState = STATE_GAME;
 		return;
 	}
@@ -632,6 +639,8 @@ function runGameOver(deltaTime)
 
 function runVictory(deltaTime)
 {
+	backgroundIntro.stop()
+	backgroundLoop.stop()	
 	//set the highscore
 	if(score >= highscore)
 	{
@@ -650,6 +659,8 @@ function runVictory(deltaTime)
 	context.fillText("Press E to try again", SCREEN_WIDTH/4, SCREEN_HEIGHT/1.2)
 	if(retry == true)
 	{
+		backgroundIntro.stop()
+		backgroundLoop.stop()
 		retry = false;
 		score = 5000;
 		player.position.x = player.startPos.x
@@ -668,7 +679,8 @@ function runVictory(deltaTime)
 function runIntermission(deltaTime)
 {
 	//set the highscore
-
+	backgroundIntro.stop()
+	backgroundLoop.stop()
 
 	context.fillStyle = "GREEN"
 	context.font = "60px Unicorn";
@@ -680,6 +692,8 @@ function runIntermission(deltaTime)
 	context.fillText("Press E to begin level 2", SCREEN_WIDTH/4, SCREEN_HEIGHT/1.2)
 	if(retry == true)
 	{
+		backgroundIntro.stop()
+		backgroundLoop.stop()
 		retry = false;
 		score = 5000;
 		player.position.x = player.startPos.x
