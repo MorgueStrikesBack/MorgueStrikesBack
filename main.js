@@ -499,8 +499,6 @@ function runGame(deltaTime)
 				sfxLevelComplete.play()
 				if(currentLevel == level1)
 				{
-					currentLevel = level2
-					score += 2000
 					gameState = STATE_INTERMISSION
 				}
 				else if(currentLevel == level2)
@@ -701,6 +699,7 @@ function runIntermission(deltaTime)
 		backgroundLoop.stop()
 		retry = false;
 		score += 2000;
+		currentLevel = level2
 		player.position.x = player.startPos.x
 		player.position.y = player.startPos.y
 		ammo += 2
