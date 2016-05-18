@@ -47,6 +47,7 @@ var STATE_GAME = 1;
 var STATE_DIED = 2;
 var STATE_GAMEOVER = 3;
 var STATE_VICTORY = 4;
+var STATE_INTERMISSION = 5;
 
 var gameState = STATE_SPLASH;
 
@@ -491,7 +492,17 @@ function runGame(deltaTime)
 				backgroundIntro.stop()
 				backgroundLoop.stop()
 				sfxLevelComplete.play()
-				gameState = STATE_VICTORY;
+				if(currentLevel == level1)
+				{
+					currentLevel = level2
+					score += 2000
+					gameState = STATE_INTERMISSION
+				}
+				else if(currentLevel == level2)
+				{
+					gameState = STATE_VICTORY;					
+				}
+
 					
 			}
 	}
@@ -614,6 +625,7 @@ function runGameOver(deltaTime)
 		sfxBegin.play();
 		backgroundIntro.play()
 		lives = 3
+		currentLevel = level1
 		gameState = STATE_GAME;
 		return;
 	}
@@ -647,8 +659,37 @@ function runVictory(deltaTime)
 		player.position.x = player.startPos.x
 		player.position.y = player.startPos.y
 		sfxBegin.play();
+		currentLevel = level1
 		backgroundIntro.play()
 		lives = 3
+		initialize();
+		gameState = STATE_GAME;
+		return;
+	}
+}
+
+function runIntermission(deltaTime)
+{
+	//set the highscore
+
+
+	context.fillStyle = "GREEN"
+	context.font = "60px Unicorn";
+	context.fillText("LEVEL 1 COMPLETE", SCREEN_WIDTH/11, SCREEN_HEIGHT/3.5)
+	context.fillStyle = "black"
+	context.font = "40px Arial Black";
+	context.fillText("Score: " + score, SCREEN_WIDTH/3.5, SCREEN_HEIGHT/2)
+	context.font = "40px Boulder";
+	context.fillText("Press E to begin level 2", SCREEN_WIDTH/4, SCREEN_HEIGHT/1.2)
+	if(retry == true)
+	{
+		retry = false;
+		score = 5000;
+		player.position.x = player.startPos.x
+		player.position.y = player.startPos.y
+		sfxBegin.play();
+		backgroundIntro.play()
+		initialize();
 		gameState = STATE_GAME;
 		return;
 	}
@@ -701,6 +742,9 @@ function run()
 			break;
 		case STATE_VICTORY:
 			runVictory(deltaTime)
+			break;
+		case STATE_INTERMISSION:
+			runIntermission(deltaTime)
 			break;
 	}
 }
