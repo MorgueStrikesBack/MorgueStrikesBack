@@ -14,6 +14,7 @@ Game Flow
 -grab/ destroy objects
 -kill enemies
 -get to finish
+-task before ending level
 
 Characters
 - enemies are doctors and surgeons
