@@ -23,6 +23,7 @@ function getDeltaTime()
 var fps = 0;
 var fpsCount = 0;
 var fpsTime = 0;
+var DEBUG = 1;	
 
 var SCREEN_WIDTH = canvas.width;
 var SCREEN_HEIGHT = canvas.height;
@@ -51,10 +52,28 @@ var JUMP = METER * 1500;
 var player = new Player();
 var keyboard = new Keyboard();
 
+
 var bullets = [];
+
+var stateManager = new StateManager();
+
+stateManager.pushState( new SplashState() );
 
 var tileset = document.createElement("img");
 tileset.src = "tileset.png";
+
+
+function intersects(x1, y1, w1, h1, x2, y2, w2, h2)
+{
+	if(y2 + h2 < y1 ||
+	x2 + w2 < x1 ||
+	x2> x1 + w1 ||
+	y2 > y1 + h1)
+	{
+		return false;
+	}
+	return true;
+}
 
 function cellAtPixelCoord(layer, x,y)
 {
@@ -94,6 +113,7 @@ function bound(value, min, max)
 }   
 
 var worldOffsetX = 0;
+currentLevel = level1
 
 function drawMap() {
     var startX = -1;
@@ -111,11 +131,11 @@ function drawMap() {
     }
     worldOffsetX = startX * TILE + offsetX;
     for (var layerIdx = 0; layerIdx < LAYER_COUNT; layerIdx++) {
-        for (var y = 0; y < level1.layers[layerIdx].height; y++) {
-            var idx = y * level1.layers[layerIdx].width + startX;
+        for (var y = 0; y < currentLevel.layers[layerIdx].height; y++) {
+            var idx = y * currentLevel.layers[layerIdx].width + startX;
             for (var x = startX; x < startX + maxTiles; x++) {
-                if (level1.layers[layerIdx].data[idx] != 0) {
-                    var tileIndex = level1.layers[layerIdx].data[idx] - 1;
+                if (currentLevel.layers[layerIdx].data[idx] != 0) {
+                    var tileIndex = currentLevel.layers[layerIdx].data[idx] - 1;
                     var sx = TILESET_PADDING + (tileIndex % TILESET_COUNT_X) *
                         (TILESET_TILE + TILESET_SPACING);
                     var sy = TILESET_PADDING + (Math.floor(tileIndex / TILESET_COUNT_Y)) *
@@ -137,10 +157,10 @@ function initialize() {
     for(var layerIdx = 0; layerIdx < LAYER_COUNT; layerIdx++) {
         cells[layerIdx] = [];
         var idx = 0;
-        for(var y = 0; y < level1.layers[layerIdx].height; y++) {
+        for(var y = 0; y < currentLevel.layers[layerIdx].height; y++) {
             cells[layerIdx][y] = [];
-            for(var x = 0; x < level1.layers[layerIdx].width; x++) {
-                if(level1.layers[layerIdx].data[idx] !=0) {
+            for(var x = 0; x < currentLevel.layers[layerIdx].width; x++) {
+                if(currentLevel.layers[layerIdx].data[idx] !=0) {
                     cells[layerIdx][y][x] = 1;
                     cells[layerIdx][y-1][x] = 1;
                     cells[layerIdx][y-1][x+1] = 1;
@@ -153,9 +173,10 @@ function initialize() {
             }
         }
     }
+}   
     
-    
-    
+function initializeMusic()
+{    
     musicBackground = new Howl(
         {
             urls: ["background.ogg"],
@@ -165,8 +186,23 @@ function initialize() {
         });
         
    musicBackground.play();
-   
+
+	sfxBegin = new Howl(
+	{
+		urls: ["begin.ogg"],
+		buffer: true,
+		volume: 0.2,
+		onend: function()
+		{
+			isSfxPlaying = false;
+		}
+
+	} );   
 }
+
+
+initializeMusic();
+initialize();
 
 function run()
 {
@@ -175,31 +211,36 @@ function run()
 	
 	var deltaTime = getDeltaTime();
     
-	
+	stateManager.update(deltaTime);
+	stateManager.draw();	
+
     player.update(deltaTime);
     drawMap();
     player.draw();
 		
-	 
-	fpsTime += deltaTime;
-	fpsCount++;
-	if(fpsTime >= 1)
+	if(DEBUG == 1)
 	{
-		fpsTime -= 1;
-		fps = fpsCount;
-		fpsCount = 0;
-	}		
-		
+
 	
-	context.fillStyle = "#f00";
-	context.font="14px Arial";
-	context.fillText("FPS: " + fps, 5, 20, 100);
-    
+		fpsTime += deltaTime;
+		fpsCount++;
+		if(fpsTime >= 1)
+		{
+			fpsTime -= 1;
+			fps = fpsCount;
+			fpsCount = 0;
+		}		
+			
+	
+		context.fillStyle = "#f00";
+		context.font="14px Arial";
+		context.fillText("FPS: " + fps, 5, 20, 100);
+	}	    
     drawMap(deltaTime);
     
 }
 
-initialize();
+
 
 
 (function() {
