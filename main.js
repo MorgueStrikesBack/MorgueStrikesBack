@@ -198,6 +198,18 @@ function initializeMusic()
 		}
 
 	} );   
+	
+	sfxJump = new Howl(
+	{
+		urls: ["jumpEffect.ogg"],
+		buffer: true,
+		volume: 0.2,
+		onend: function()
+		{
+			isSfxPlaying = false;
+		}
+
+	} );
 }
 
 
