@@ -186,7 +186,18 @@ function initializeMusic()
         });
         
    musicBackground.play();
-   
+
+	sfxBegin = new Howl(
+	{
+		urls: ["begin.ogg"],
+		buffer: true,
+		volume: 0.2,
+		onend: function()
+		{
+			isSfxPlaying = false;
+		}
+
+	} );   
 }
 
 
