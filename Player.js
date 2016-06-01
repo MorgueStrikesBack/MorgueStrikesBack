@@ -16,15 +16,14 @@ var ANIM_MAX = 9;
 
 var Player = function() {
     this.sprite = new Sprite("player.png");
-    this.sprite.buildAnimation(23, 1,80,49, 1, [0, 1, 2, 3,]);
-    this.sprite.buildAnimation(23, 1,80,49, 1, []);
-    this.sprite.buildAnimation(23, 1,80,49, 1, [4,5,6,7,]);
-    this.sprite.buildAnimation(23, 1,80,49, 1, []);
-    this.sprite.buildAnimation(23, 1,80,49, 1, []);
-    this.sprite.buildAnimation(23, 1,80,49, 1, []);
-    this.sprite.buildAnimation(23, 1,80,49, 1, [8,9,10,11]);
-    this.sprite.buildAnimation(23, 1,80,49, 1, []);
-    this.sprite.buildAnimation(23, 1,80,49, 1, []);
+    this.sprite.buildAnimation(23, 1,40,46, 1, []);
+    this.sprite.buildAnimation(23, 1,40,46, 1, [4,5,6,7,]);
+    this.sprite.buildAnimation(23, 1,40,46, 1, []);
+    this.sprite.buildAnimation(23, 1,40,46, 1, []);
+    this.sprite.buildAnimation(23, 1,40,46, 1, []);
+    this.sprite.buildAnimation(23, 1,40,46, 1, [8,9,10,11]);
+    this.sprite.buildAnimation(23, 1,40,46, 1, []);
+    this.sprite.buildAnimation(23, 1,40,46, 1, []);
 
     for (var i = 0; i < ANIM_MAX; i++) {
         this.sprite.setAnimationOffset(i, -55, -87);
@@ -33,8 +32,11 @@ var Player = function() {
     this.position = new Vector2();
     this.position.set = (9 * TILE, 0 * TILE);
 
-    this.width = 159;
-    this.height = 163;
+    this.sprite.x = this.position.x
+    this.sprite.y = this.position.y
+
+    this.width = 15;
+    this.height = 40;
 
     this.velocity = new Vector2();
 
@@ -190,8 +192,20 @@ Player.prototype.update = function(deltaTime) {
         }
 
     }
+
+    if (this.direction == LEFT)
+    {
+        this.sprite.x = this.position.x - 20
+        this.sprite.y = this.position.y
+    }
+    else 
+    {
+        this.sprite.x = this.position.x
+        this.sprite.y = this.position.y
+    }
+
 }
 
 Player.prototype.draw = function() {
-    this.sprite.draw(context, this.position.x, this.position.y);
+    this.sprite.draw(context, this.sprite.x, this.sprite.y);
 }
