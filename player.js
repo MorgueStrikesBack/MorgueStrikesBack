@@ -16,7 +16,6 @@ var ANIM_MAX = 9;
 
 var Player = function() {
     this.sprite = new Sprite("player.png");
-    this.sprite.buildAnimation(23, 1,40,46, 1, [0, 1, 2, 3,]);
     this.sprite.buildAnimation(23, 1,40,46, 1, []);
     this.sprite.buildAnimation(23, 1,40,46, 1, [4,5,6,7,]);
     this.sprite.buildAnimation(23, 1,40,46, 1, []);
