@@ -1,0 +1,7 @@
+Layer count - 6
+Map - 50 width x 32 height
+Tile - 35
+Tileset tiles are 70x70
+padding/spacing - 0
+tileset x = 27
+tileset y = 1
