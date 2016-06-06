@@ -147,6 +147,28 @@ function createFireEmitter(particleTexture, posX, posY)
 	return e;
 }
 
+
+function createBloodEmitter(particleTexture, posX, posY)
+{
+	var e = new Emitter(particleTexture, posX, posY);
+	e.gravity = GRAVITY;
+
+	e.minLife = 1.0;
+	e.maxLife = 3.0;
+	e.minSize = 8;
+	e.maxSize = 16;
+
+	e.minVelocity.set(0.0, 0.0);
+	e.maxVelocity.set(0.0, 0.0);
+
+	e.emissionRate = 50.0;
+
+	e.emissionSize.set(10.0, 1.0);
+	e.transparency = 0.75;
+
+	return e;
+}
+
 function createFlyingStarsEmitter(particleTexture, posX, posY)
 {
 	var e = new Emitter(particleTexture, posX, posY);
