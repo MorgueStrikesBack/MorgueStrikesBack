@@ -151,7 +151,7 @@ function createFireEmitter(particleTexture, posX, posY)
 function createBloodEmitter(particleTexture, posX, posY)
 {
 	var e = new Emitter(particleTexture, posX, posY);
-	e.gravity = GRAVITY;
+	e.gravity = 1;
 
 	e.minLife = 1.0;
 	e.maxLife = 3.0;
