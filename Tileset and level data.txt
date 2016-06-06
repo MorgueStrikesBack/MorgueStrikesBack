@@ -5,3 +5,10 @@ Tileset tiles are 70x70
 padding/spacing - 0
 tileset x = 27
 tileset y = 1
+layer names
+0 - Platform
+1 - Background
+2 - Elevator
+3 - Enemy
+4 - Gold
+5 - Bed
