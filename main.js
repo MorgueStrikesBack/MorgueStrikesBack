@@ -178,7 +178,7 @@ function initialize() {
     }
 }   
     
-/*function initializeMusic()
+function initializeMusic()
 {    
     musicBackground = new Howl(
         {
@@ -194,7 +194,7 @@ function initialize() {
 	{
 		urls: ["begin.ogg"],
 		buffer: true,
-		volume: 0.2,
+		volume: 0.7,
 		onend: function()
 		{
 			isSfxPlaying = false;
@@ -218,7 +218,7 @@ function initialize() {
 
 initializeMusic();
 initialize();
-*/
+
 function run()
 {
 	context.fillStyle = "#ccc";		

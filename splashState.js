@@ -16,6 +16,7 @@ SplashState.prototype.update = function(dt)
 {
 	if( keyboard.isKeyDown( keyboard.KEY_SPACE ) == true )
 	{
+		sfxBegin.play();
 		stateManager.switchState( new GameState() );
 	}
 }
