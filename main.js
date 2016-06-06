@@ -31,7 +31,10 @@ var SCREEN_HEIGHT = canvas.height;
 var LAYER_COUNT = 6;
 var LAYER_BACKGROUND = 0;
 var LAYER_PLATFORMS = 1;
-var LAYER_LADDERS = 2;
+var LAYER_ELEVATOR = 2;
+var LAYER_ENEMIES = 3;
+var LAYER_GOLD = 4;
+var LAYER_BED= 5;
 
 var MAP = {tw:50, th:32};
 var TILE = 35;

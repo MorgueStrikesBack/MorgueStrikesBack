@@ -1,5 +1,3 @@
-var PLAYER_SPEED = 300;
-
 var Player = function() {
 	this.image = document.createElement("img");
 
