@@ -22,7 +22,7 @@ var Player = function() {
 };
 
 Player.prototype.update = function(deltaTime) {
-	/* this.sprite.update(deltaTime);
+	// this.sprite.update(deltaTime);
 
     var left = false;
     var right = false;
@@ -117,7 +117,7 @@ Player.prototype.update = function(deltaTime) {
         }
 
     }
-*/
+
 }
 
 Player.prototype.draw = function() {
