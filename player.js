@@ -24,7 +24,7 @@ var Player = function() {
 };
 
 Player.prototype.update = function(deltaTime) {
-    this.sprite.update(deltaTime);
+	/* this.sprite.update(deltaTime);
 
     var left = false;
     var right = false;
@@ -119,13 +119,13 @@ Player.prototype.update = function(deltaTime) {
         }
 
     }
-
+*/
 }
 
 Player.prototype.draw = function() {
-    conetx.save();
-    context.translate(this.x, this.y);
-    conetx.rotate(this.rotation);
-    context.drawimage(this.image, -this.width/2. -this.height/2);
-    conetext.restore();
+ 	context.save();
+	context.translate(this.position.x, this.position.y);
+	context.rotate(this.rotation);
+	context.drawImage(this.image, -this.width/2, -this.height/2);
+	context.restore();
 }

@@ -60,7 +60,7 @@ var stateManager = new StateManager();
 stateManager.pushState( new SplashState() );
 
 var tileset = document.createElement("img");
-tileset.src = "tileset.png";
+tileset.src = "hospital tileset.png";
 
 
 function intersects(x1, y1, w1, h1, x2, y2, w2, h2)
@@ -149,8 +149,8 @@ function drawMap() {
     }
 }
 
-var musicBackground;
-var sfxJump;
+//var musicBackground;
+//var sfxJump;
 
 var cells = [];
 function initialize() {
@@ -175,7 +175,7 @@ function initialize() {
     }
 }   
     
-function initializeMusic()
+/*function initializeMusic()
 {    
     musicBackground = new Howl(
         {
@@ -215,7 +215,7 @@ function initializeMusic()
 
 initializeMusic();
 initialize();
-
+*/
 function run()
 {
 	context.fillStyle = "#ccc";		
