@@ -1,13 +1,13 @@
 var Vector2 = function (nX,nY)
 {
-	this.x = nX
-	this.y = nY
+	this.x = nX;
+	this.y = nY;
 }
 
 Vector2.prototype.Set = function (nX,nY)
 {
-		this.x = nX
-		this.y = nY	
+	this.x = nX;
+	this.y = nY;
 }
 
 Vector2.prototype.Magnitude = function ()
@@ -20,8 +20,8 @@ Vector2.prototype.Magnitude = function ()
 Vector2.prototype.Normalize = function ()
 {
 	var mag = this.Magnitude();
-	this.x /= mag;
-	this.y /= mag;
+	this.x = this.x / mag;
+	this.y = this.y / mag;
 }
 
 Vector2.prototype.GetNormal = function ()

@@ -1,6 +1,7 @@
 var PLAYER_SPEED = 300;
 
 var Player = function() {
+	this.image = document.createElement("img");
 
     this.position = new Vector2();
     this.position.set = (9 * TILE, 0 * TILE);
@@ -9,11 +10,11 @@ var Player = function() {
     this.height = 40;
     
     this.offset = new Vector2();
-    this.offset.set(-55.-87);
+    this.offset.Set(-55.-87);
 
     this.velocity = new Vector2();
 
-    this.velocity.set(0, 0);
+    this.velocity.Set(0, 0);
 
     this.falling = true;
     this.jumping = false;
