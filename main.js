@@ -180,7 +180,7 @@ function initialize() {
     
 function initializeMusic()
 {    
-    musicBackground = new Howl(
+    /*musicBackground = new Howl(
         {
             urls: ["background.ogg"],
             loop: true,
@@ -188,7 +188,7 @@ function initializeMusic()
             volume: 0.1
         });
         
-   musicBackground.play();
+   musicBackground.play();*/
 
 	sfxBegin = new Howl(
 	{
