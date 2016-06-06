@@ -28,18 +28,18 @@ var DEBUG = 1;
 var SCREEN_WIDTH = canvas.width;
 var SCREEN_HEIGHT = canvas.height;
 
-var LAYER_COUNT = 3;
+var LAYER_COUNT = 6;
 var LAYER_BACKGROUND = 0;
 var LAYER_PLATFORMS = 1;
 var LAYER_LADDERS = 2;
 
-var MAP = {tw:60, th:15};
+var MAP = {tw:50, th:32};
 var TILE = 35;
-var TILESET_TILE=TILE * ;
-var TILESET_PADDING = ;
-var TILESET_SPACING = ;
-var TILESET_COUNT_X = ;
-var TILESET_COUNT_Y = ;
+var TILESET_TILE= TILE;
+var TILESET_PADDING = 0;
+var TILESET_SPACING = 0;
+var TILESET_COUNT_X = 27;
+var TILESET_COUNT_Y = 1;
 
 var METER = TILE;
 var GRAVITY = METER * 9.8 * 6;
