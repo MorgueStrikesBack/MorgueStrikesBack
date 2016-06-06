@@ -30,7 +30,7 @@ var Player = function() {
     }
 
     this.position = new Vector2();
-    this.position.set = (9 * TILE, 0 * TILE);
+    this.position.Set = (9 * TILE, 0 * TILE);
 
     this.sprite.x = this.position.x
     this.sprite.y = this.position.y
@@ -40,7 +40,7 @@ var Player = function() {
 
     this.velocity = new Vector2();
 
-    this.velocity.set(0, 0);
+    this.velocity.Set(0, 0);
 
     this.falling = true;
     this.jumping = false;
