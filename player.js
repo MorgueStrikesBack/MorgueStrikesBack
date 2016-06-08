@@ -22,7 +22,7 @@ var Player = function() {
     this.jumping = false;
     
     this.image.src = "player1.png"
-	this.direction = LEFT;
+	this.direction = RIGHT;
 
 };
 
@@ -50,7 +50,7 @@ Player.prototype.update = function(deltaTime) {
 	{
 		this.cooldownTimer -= deltaTime;
 	}
-	console.log(this.cooldownTimer)
+	//console.log(this.cooldownTimer)
 	if(keyboard.isKeyDown(keyboard.KEY_SHIFT) == true && this.cooldownTimer <= 0)
 	{
 
