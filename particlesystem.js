@@ -29,10 +29,10 @@ var Emitter = function(imageFilename, positionX, positionY)
 	this.texture.src = imageFilename;
 	
 	this.position = new Vector2();
-	this.position.set(positionX, positionY);
+	this.position.Set(positionX, positionY);
 	
 	this.emissionSize = new Vector2();
-	this.emissionSize.set(5, 5);
+	this.emissionSize.Set(5, 5);
 	this.emissionRate = 1000;
 
 	this.minLife = 0.5;
@@ -40,9 +40,9 @@ var Emitter = function(imageFilename, positionX, positionY)
 	this.minSize = 8;
 	this.maxSize = 32;
 	this.minVelocity = new Vector2();
-	this.minVelocity.set(-50, -50);
+	this.minVelocity.Set(-50, -50);
 	this.maxVelocity = new Vector2();
-	this.maxVelocity.set(50, 50);
+	this.maxVelocity.Set(50, 50);
 	this.gravity = 0;
 	this.wind = 0;
 	this.transparency = 0.25;
@@ -69,7 +69,7 @@ Emitter.prototype.update = function(dt)
 		p.acceleration.y += this.gravity * dt;
 		p.acceleration.x += this.wind * dt;
 
-		p.velocity.set( p.velocity.x + p.acceleration.x * dt, p.velocity.y + p.acceleration.y );
+		p.velocity.Set( p.velocity.x + p.acceleration.x * dt, p.velocity.y + p.acceleration.y );
 		p.position.x += p.velocity.x * dt;
 		p.position.y -= p.velocity.y * dt;
 
@@ -81,14 +81,14 @@ Emitter.prototype.update = function(dt)
 Emitter.prototype.draw = function() 
 {	
 	var origin = new Vector2();
-	origin.set(this.texture.width / 2, this.texture.height / 2);
+	origin.Set(this.texture.width / 2, this.texture.height / 2);
 
 	for(var i=0; i<this.particles.length; i++ )
 	{
 		var p = this.particles[i];
 		
 		var scale = new Vector2();
-		scale.set( p.size.x / this.texture.width, p.size.y / this.texture.height);
+		scale.Set( p.size.x / this.texture.width, p.size.y / this.texture.height);
 	
 		context.save();
 		context.translate(p.position.x, p.position.y);
@@ -105,16 +105,16 @@ Emitter.prototype.spawnParticle = function()
 
 	p.life = random(this.minLife, this.maxLife);
 	p.rotation = 0;	
-	p.acceleration.set(this.wind, -this.gravity);
-	p.velocity.set(
+	p.acceleration.Set(this.wind, -this.gravity);
+	p.velocity.Set(
 		random(this.minVelocity.x, this.maxVelocity.x), 
 		random(this.minVelocity.y, this.maxVelocity.y) );
 		
-	p.position.set(
+	p.position.Set(
 		random(-this.emissionSize.x/2, this.emissionSize.x/2) + this.position.x, 
 		random(-this.emissionSize.y/2, -this.emissionSize.y/2) + this.position.y );
 		
-	p.size.set(	random(this.minSize, this.maxSize),	random(this.minSize, this.maxSize) );
+	p.size.Set(	random(this.minSize, this.maxSize),	random(this.minSize, this.maxSize) );
 		
 	p.alpha = this.transparency;
 
@@ -136,12 +136,12 @@ function createFireEmitter(particleTexture, posX, posY)
 	e.minLife = 0.25;
 	e.maxLife = 2.0;
 
-	e.minVelocity.set(0.0, 0.0);
-	e.maxVelocity.set(0.0, 100.0);
+	e.minVelocity.Set(0.0, 0.0);
+	e.maxVelocity.Set(0.0, 100.0);
 
 	e.emissionRate = 1000.0;
 
-	e.emissionSize.set(10.0, 1.0);
+	e.emissionSize.Set(10.0, 1.0);
 	e.transparency = 0.15;
 
 	return e;
@@ -158,12 +158,12 @@ function createBloodEmitter(particleTexture, posX, posY)
 	e.minSize = 8;
 	e.maxSize = 16;
 
-	e.minVelocity.set(0.0, 1.0);
-	e.maxVelocity.set(0.0, 1.0);
+	e.minVelocity.Set(0.0, 1.0);
+	e.maxVelocity.Set(0.0, 1.0);
 
 	e.emissionRate = 50.0;
 
-	e.emissionSize.set(10.0, 1.0);
+	e.emissionSize.Set(10.0, 1.0);
 	e.transparency = 0.75;
 
 	return e;
@@ -172,7 +172,7 @@ function createBloodEmitter(particleTexture, posX, posY)
 function createFlyingStarsEmitter(particleTexture, posX, posY)
 {
 	var e = new Emitter(particleTexture, posX, posY);
-	e.emissionSize.set(SCREEN_WIDTH/2, 0);
+	e.emissionSize.Set(SCREEN_WIDTH/2, 0);
 	e.emissionRate = 100.0;
 	e.minLife = 2.0;
 	e.maxLife = 7.0;
@@ -195,12 +195,12 @@ function createBoneShardEmitter(particleTexture, posX, posY)
 	e.minSize = 1;
 	e.maxSize = 10;
 
-	e.minVelocity.set(0.0, 11.0);
-	e.maxVelocity.set(0.0, -11.0);
+	e.minVelocity.Set(0.0, 11.0);
+	e.maxVelocity.Set(0.0, -11.0);
 
 	e.emissionRate = 30.0;
 
-	e.emissionSize.set(10.0, 1.0);
+	e.emissionSize.Set(10.0, 1.0);
 	e.transparency = 0.65;
 
 	return e;
