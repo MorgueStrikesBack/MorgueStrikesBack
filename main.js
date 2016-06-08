@@ -119,7 +119,7 @@ var worldOffsetX = 0;
 currentLevel = level1
 
 function drawMap() {
-    var startX = -1;
+   
     var maxTiles = Math.floor(SCREEN_WIDTH / TILE) + 2;
     var tileX = pixelToTile(player.position.x);
     var offsetX = TILE + Math.floor(player.position.x % TILE);
@@ -132,6 +132,7 @@ function drawMap() {
         startX = MAP.tw - maxTiles + 1;
         offsetX = TILE;
     }
+           console.log(offsetX)
     worldOffsetX = startX * TILE + offsetX;
     for (var layerIdx = 0; layerIdx < LAYER_COUNT; layerIdx++) {
         for (var y = 0; y < currentLevel.layers[layerIdx].height; y++) {
