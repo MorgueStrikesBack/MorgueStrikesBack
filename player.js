@@ -15,7 +15,7 @@ var Player = function() {
     this.offset.Set(-55.-87);
 
     this.velocity = new Vector2();
-
+    this.cooldownTimer = 0;
     this.velocity.Set(0, 0);
 
     this.falling = true;
@@ -50,7 +50,7 @@ Player.prototype.update = function(deltaTime) {
 	{
 		this.cooldownTimer -= deltaTime;
 	}
-
+	console.log(this.cooldownTimer)
 	if(keyboard.isKeyDown(keyboard.KEY_SHIFT) == true && this.cooldownTimer <= 0)
 	{
 
