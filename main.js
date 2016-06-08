@@ -132,7 +132,7 @@ function drawMap() {
         startX = MAP.tw - maxTiles + 1;
         offsetX = TILE;
     }
-           console.log(offsetX)
+
     worldOffsetX = startX * TILE + offsetX;
     for (var layerIdx = 0; layerIdx < LAYER_COUNT; layerIdx++) {
         for (var y = 0; y < currentLevel.layers[layerIdx].height; y++) {
@@ -233,6 +233,17 @@ function run()
     player.update(deltaTime);
     drawMap();
     player.draw();
+
+    for(var i=0; i<bullets.length; i++)
+	{
+		bullets[i].update(deltaTime);
+
+	}
+
+	for(var i=0; i<bullets.length; i++)
+	{
+		bullets[i].draw();
+	}
 		
 	if(DEBUG == 1)
 	{
