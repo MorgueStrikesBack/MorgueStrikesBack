@@ -1,3 +1,8 @@
+var Vector2 = function ()
+{
+
+}
+
 var Vector2 = function (nX,nY)
 {
 	this.x = nX;
