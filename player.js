@@ -68,7 +68,7 @@ Player.prototype.update = function(deltaTime) {
     this.velocity.x = bound(this.velocity.x + (deltaTime * ddx), -MAXDX, MAXDX);
     this.velocity.y = bound(this.velocity.y + (deltaTime * ddy), -MAXDY, MAXDY);
     
-    if ((wasleft && (thisvelocity.x > 0)) ||
+    if ((wasleft && (this.velocity.x > 0)) ||
     (wasright && (this.velocity.x < 0)))
     
     {
