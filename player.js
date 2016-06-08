@@ -36,7 +36,7 @@ Player.prototype.update = function(deltaTime) {
       right = true;
   }
   if(keyboard.isKeyDown(keyboard.KEY_SPACE) == true){
-      jump == true;
+      jump = true;
   }
   
   var wasleft = this.velocity.x < 0;
@@ -55,10 +55,11 @@ Player.prototype.update = function(deltaTime) {
   ddx = ddx + ACCEL;
   else if (wasright)
   ddx = ddx - FRICTION;
-  
+
   if ( jump && !this.jumping && !falling)
   {
-      ddy = ddy - jump;
+      ddy = ddy - JUMP;
+      sfxJump.play();	
       this.jumping = true;
   }
 
@@ -124,6 +125,6 @@ Player.prototype.draw = function() {
  	context.save();
 	context.translate(this.position.x, this.position.y);
 	context.rotate(this.rotation);
-	context.drawImage(this.image, -this.width/2, -this.height/2);
+	context.drawImage(this.image, this.position.x -worldOffsetX, this.position.y );
 	context.restore();
 }
