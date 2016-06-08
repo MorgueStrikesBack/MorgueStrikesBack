@@ -122,9 +122,9 @@ Player.prototype.update = function(deltaTime) {
 }
 
 Player.prototype.draw = function() {
- 	context.save();
-	context.translate(this.position.x, this.position.y);
-	context.rotate(this.rotation);
+ 	//context.save();
+	//context.translate(this.position.x, this.position.y);
+	//context.rotate(this.rotation);
 	context.drawImage(this.image, this.position.x -worldOffsetX, this.position.y );
-	context.restore();
+	//context.restore();
 }
