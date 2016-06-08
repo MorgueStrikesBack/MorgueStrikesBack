@@ -1,3 +1,7 @@
+var LEFT = 0;
+var RIGHT = 1;
+
+
 var Player = function() {
 	this.image = document.createElement("img");
 	//Vector should work no matter what now
@@ -18,6 +22,7 @@ var Player = function() {
     this.jumping = false;
     
     this.image.src = "player1.png"
+	this.direction = LEFT;
 
 };
 
@@ -31,14 +36,31 @@ Player.prototype.update = function(deltaTime) {
     
    if(keyboard.isKeyDown(keyboard.KEY_LEFT) == true){
       left = true;
+		this.direction = LEFT;
   }
   if(keyboard.isKeyDown(keyboard.KEY_RIGHT) == true){
       right = true;
+      	this.direction = RIGHT;
   }
   if(keyboard.isKeyDown(keyboard.KEY_SPACE) == true){
       jump = true;
   }
   
+	if(this.cooldownTimer>0)
+	{
+		this.cooldownTimer -= deltaTime;
+	}
+
+	if(keyboard.isKeyDown(keyboard.KEY_SHIFT) == true && this.cooldownTimer <= 0)
+	{
+
+		this.cooldownTimer = 0.3;
+		// Shoot a bullet
+		
+		bullets.push(new Bullet(this.position.x,this.position.y,this.direction))
+
+	}
+
   var wasleft = this.velocity.x < 0;
   var wasright = this.velocity.x > 0;
   var falling = this.falling;
