@@ -18,12 +18,12 @@ var ANIM_MAX = 10;
 var Player = function() {
     this.sprite = new Sprite("player.png");
     this.sprite.buildAnimation(19, 2, 40, 49, 0.3, [0, 1, 2, 3,]);
-    this.sprite.buildAnimation(19, 2, 40, 49, 0.3, []);
+    this.sprite.buildAnimation(19, 2, 40, 49, 0.3, [0,1,2,3]);
     this.sprite.buildAnimation(19, 2, 40, 49, 0.3, [4,5,6,7,]);
     this.sprite.buildAnimation(19, 2, 40, 49, 0.3, [16,17,18]);
     this.sprite.buildAnimation(19, 2, 40, 49, 0.3, [8,9,10,11,12,13,14,15]);
     this.sprite.buildAnimation(19, 2, 40, 49, 0.3, [19,20,21,22]);
-    this.sprite.buildAnimation(19, 2, 40, 49, 0.3, []);
+    this.sprite.buildAnimation(19, 2, 40, 49, 0.3, [19,20,21,22]);
     this.sprite.buildAnimation(19, 2, 40, 49, 0.3, [23,24,25,26]);
     this.sprite.buildAnimation(19, 2, 40, 49, 0.3, [35,36,37]);
     this.sprite.buildAnimation(19, 2, 40, 49, 0.3, [27,28,29,30,31,32,33,34]);
