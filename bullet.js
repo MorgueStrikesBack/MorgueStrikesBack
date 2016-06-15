@@ -5,8 +5,11 @@ var Bullet = function(x, y, direction)
 	this.direction = direction;
  	
 	this.position = new Vector2(x, y);
+	this.position.Set(x,y)
 	this.positionLeft = new Vector2(x + 60, y);
+	this.positionLeft.Set(x + 60 ,y)
 	this.positionRight = new Vector2(x - 60, y);
+	this.positionRight.Set(x - 60 ,y)
 	this.velocity = new Vector2();
     this.image.src = "bullet.png"
 	this.boneshardEmitter = createBoneShardEmitter("boneshard.png", (this.position.x, this.position.y));
