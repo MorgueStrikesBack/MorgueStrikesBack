@@ -18,12 +18,12 @@ var Player = function() {
     this.sprite.buildAnimation(19, 2, 40, 49, 0.3, [0, 1, 2, 3]);
     this.sprite.buildAnimation(19, 2, 40, 49, 0.3, [0,1,2,3]);
     this.sprite.buildAnimation(19, 2, 40, 49, 0.3, [4,5,6,7]);
-    this.sprite.buildAnimation(19, 2, 40, 49, 0.5, [16,17,18]);
+    this.sprite.buildAnimation(19, 2, 40, 49, 1, [16,17,18]);
     this.sprite.buildAnimation(19, 2, 40, 49, 0.3, [8,9,10,11,12,13,14,15]);
     this.sprite.buildAnimation(19, 2, 40, 49, 0.3, [19,20,21,22]);
     this.sprite.buildAnimation(19, 2, 40, 49, 0.3, [19,20,21,22]);
     this.sprite.buildAnimation(19, 2, 40, 49, 0.3, [23,24,25,26]);
-    this.sprite.buildAnimation(19, 2, 40, 49, 0.5, [35,36,37]);
+    this.sprite.buildAnimation(19, 2, 40, 49, 1, [35,36,37]);
     this.sprite.buildAnimation(19, 2, 40, 49, 0.3, [27,28,29,30,31,32,33,34]);
     
 
@@ -106,7 +106,7 @@ Player.prototype.update = function(deltaTime) {
       if(keyboard.isKeyDown(keyboard.KEY_SHIFT) == true && this.cooldownTimer <= 0 )
 	{
 
-		this.cooldownTimer >= 0.3;
+		this.cooldownTimer = 1;
 		// Shoot a bullet
 		
 		bullets.push(new Bullet(this.position.x,this.position.y,this.direction))
