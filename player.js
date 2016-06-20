@@ -98,8 +98,8 @@ Player.prototype.update = function(deltaTime) {
         
     }
     
-    /*else {
-        if (this.shooting)
+    else {
+        if (this.shooting == false);
     }
             
       if(keyboard.isKeyDown(keyboard.KEY_SHIFT) == true && this.cooldownTimer <= 0 )
@@ -130,7 +130,7 @@ Player.prototype.update = function(deltaTime) {
         {
             this.sprite.setAnimation(ANIM_MELEE_RIGHT)
         }
-    }*/
+    }
     
     
     var wasleft = this.velocity.x < 0;
