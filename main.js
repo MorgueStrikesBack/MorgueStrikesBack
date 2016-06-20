@@ -154,7 +154,7 @@ function drawMap() {
 }
 
 //var musicBackground;
-//var sfxJump;
+var sfxJump;
 
 var cells = [];
 function initialize() {

@@ -93,9 +93,10 @@ Player.prototype.update = function(deltaTime) {
         }
         if (right == true) {
             this.sprite.setAnimation(ANIM_JUMP_RIGHT);
-        }
-         sfxJump.play()
-        
+        }        
+    }
+    if (keyboard.isKeyDown(keyboard.KEY_UP) == true && !this.jumping && !this.falling){
+        sfxJump.play()
     }
     
     else {
