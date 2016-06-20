@@ -244,7 +244,10 @@ function run()
 	{
 		bullets[i].draw();
 	}
-		
+
+	if(player.cooldownTimer >= 0)	
+		player.cooldownTimer -= deltaTime
+
 	if(DEBUG == 1)
 	{
 
