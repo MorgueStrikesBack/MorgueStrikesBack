@@ -6,10 +6,10 @@ var Bullet = function(x, y, direction)
  	
 	this.position = new Vector2(x, y+ 10);
 	this.position.Set(x,y + 10)
-	this.positionLeft = new Vector2(x + 60, y+ 10);
-	this.positionLeft.Set(x + 20 ,y+ 10)
-	this.positionRight = new Vector2(x - 60, y+ 10);
-	this.positionRight.Set(x - 20 ,y+10)
+	this.positionLeft = new Vector2(x+28, y+ 10);
+	this.positionLeft.Set(x +28 ,y+ 10)
+	this.positionRight = new Vector2(x +10 , y+ 10);
+	this.positionRight.Set(x +10 ,y+10)
 	this.velocity = new Vector2();
     this.image.src = "bullet.png"
 	this.boneshardEmitter = createBoneShardEmitter("boneshard.png", (this.position.x, this.position.y));
