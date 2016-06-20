@@ -28,7 +28,7 @@ var Player = function() {
     
 
     for (var i = 0; i < ANIM_MAX; i++) {
-        this.sprite.setAnimationOffset(i, -1, -1);
+        this.sprite.setAnimationOffset(i, 0, 0);
     }
 
     this.position = new Vector2();
@@ -93,9 +93,10 @@ Player.prototype.update = function(deltaTime) {
         }
         if (right == true) {
             this.sprite.setAnimation(ANIM_JUMP_RIGHT);
-        }
-         sfxJump.play()
-        
+        }        
+    }
+    if (keyboard.isKeyDown(keyboard.KEY_UP) == true && !this.jumping && !this.falling){
+        sfxJump.play()
     }
     
     else {
@@ -117,10 +118,10 @@ Player.prototype.update = function(deltaTime) {
 		{
 			this.sprite.setAnimation(ANIM_SHOOT_RIGHT)	
 		}
- }
-
- 
-    if(keyboard.isKeyDown(keyboard.KEY_E) == true)
+    }
+    
+    else {
+        if(keyboard.isKeyDown(keyboard.KEY_E) == true)
     {
         if(this.direction == LEFT)
         {
@@ -131,7 +132,7 @@ Player.prototype.update = function(deltaTime) {
             this.sprite.setAnimation(ANIM_MELEE_RIGHT)
         }
     }
-    
+}
     
     var wasleft = this.velocity.x < 0;
     var wasright = this.velocity.x > 0;
@@ -217,5 +218,5 @@ Player.prototype.update = function(deltaTime) {
 }
 
 Player.prototype.draw = function() {
-    this.sprite.draw(context, this.position.x, this.position.y);
+    this.sprite.draw(context, this.position.x -worldOffsetX, this.position.y);
 } 
