@@ -41,8 +41,8 @@ var TILE = 35;
 var TILESET_TILE= TILE * TILE;
 var TILESET_PADDING = 0;
 var TILESET_SPACING = 0;
-var TILESET_COUNT_X = 27;
-var TILESET_COUNT_Y = 1;
+var TILESET_COUNT_X = 7;
+var TILESET_COUNT_Y = 7;
 
 var METER = TILE;
 var GRAVITY = METER * 9.8 * 6;
@@ -63,7 +63,7 @@ var stateManager = new StateManager();
 stateManager.pushState( new SplashState() );
 
 var tileset = document.createElement("img");
-tileset.src = "hospital tileset.png";
+tileset.src = "hospitaltilesetnew.png";
 
 
 function intersects(x1, y1, w1, h1, x2, y2, w2, h2)
