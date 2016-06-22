@@ -38,7 +38,7 @@ var LAYER_BED= 5;*/
 
 var MAP = {tw:20, th:10};
 var TILE = 35;
-var TILESET_TILE= TILE;
+var TILESET_TILE= TILE * TILE;
 var TILESET_PADDING = 0;
 var TILESET_SPACING = 0;
 var TILESET_COUNT_X = 27;
@@ -284,7 +284,7 @@ function run()
 		context.fillText("FPS: " + fps, 5, 20, 100);
 	}	    
     drawMap(deltaTime);
-    DrawLevelCollisionData(1) 
+   // DrawLevelCollisionData(1) 
 
 }
 
