@@ -179,6 +179,23 @@ function initialize() {
     }
 }   
     
+
+
+    //DEBUG DRAW LEVEL COLLISION DATA
+	function DrawLevelCollisionData(tileLayer) {
+	    for (var y = 0; y < currentLevel.layers[tileLayer].height; y++) {
+	        for (var x = 0; x < currentLevel.layers[tileLayer].width; x++) {
+	            if (cells[tileLayer][y][x] == 1) {
+	                context.fillStyle = "#F00";
+	                context.fillRect(TILE * x, TILE * y, TILE, TILE);
+	            }
+	        }
+	    }
+	}
+
+
+
+
 function initializeMusic()
 {    
     /*musicBackground = new Howl(
@@ -267,7 +284,8 @@ function run()
 		context.fillText("FPS: " + fps, 5, 20, 100);
 	}	    
     drawMap(deltaTime);
-    
+    DrawLevelCollisionData(1) 
+
 }
 
 
