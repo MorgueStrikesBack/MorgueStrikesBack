@@ -247,8 +247,8 @@ function run()
 	stateManager.update(deltaTime);
 	stateManager.draw();	
 
-    player.update(deltaTime);
-    drawMap(deltaTime);
+    /*player.update(deltaTime);
+    //drawMap(deltaTime);
     //drawMap();
     player.draw();
 
@@ -264,7 +264,7 @@ function run()
 	}
 
 	if(player.cooldownTimer >= 0)	
-		player.cooldownTimer -= deltaTime
+		player.cooldownTimer -= deltaTime*/
 
 	if(DEBUG == 1)
 	{

@@ -17,30 +17,40 @@ GameState.prototype.update = function(dt)
 {
 	if( this.delay > 0 )
 		this.delay -= dt;
-
-	if( this.delay <= 0 && keyboard.isKeyDown( keyboard.KEY_SPACE ) == true )
-	{
-		stateManager.switchState( new GameOverState() );
-	}
 }
 
 GameState.prototype.draw = function() 
-{
-	context.font="72px Verdana";	
-	context.fillStyle = "#FF0";	
-	var width = context.measureText("GAME STATE").width;
-	context.fillText("GAME STATE", SCREEN_WIDTH/2 - width/2, SCREEN_HEIGHT/2);		
-	
-	
+{	
 	if( this.delay <= 0 )
 	{
-		context.font="18px Verdana";	
-		context.fillStyle = "#000";	
-		width = context.measureText("Press SPACE to Continue.").width;
-		context.fillText("Press SPACE to Continue.", SCREEN_WIDTH/2 - width/2, 300);
+		var deltaTime = getDeltaTime();
+
+		player.update(deltaTime);
+    	drawMap(deltaTime);
+    	//drawMap();
+    	player.draw();
+
+    	for(var i=0; i<bullets.length; i++)
+		{
+			bullets[i].update(deltaTime);
+
+		}
+
+		for(var i=0; i<bullets.length; i++)
+		{
+			bullets[i].draw();
+		}
+
+		if(player.cooldownTimer >= 0)	
+			player.cooldownTimer -= deltaTime
 	}
 	else 
 	{
+		context.font="72px Verdana";	
+		context.fillStyle = "#FF0";	
+		var width =  context.measureText("GET READY").width;
+		context.fillText("GET READY", SCREEN_WIDTH/2 - width/2, SCREEN_HEIGHT/2);
+
 		var time = Math.floor(this.delay);
 		var decimal = Math.floor(this.delay * 10) - time*10;
 	
