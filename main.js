@@ -29,8 +29,8 @@ var SCREEN_WIDTH = canvas.width;
 var SCREEN_HEIGHT = canvas.height;
 
 var LAYER_COUNT = 2;
-var LAYER_BACKGROUND = 0;
-var LAYER_PLATFORMS = 1;
+var LAYER_BACKGROUND = 1;
+var LAYER_PLATFORMS = 0;
 /*var LAYER_ELEVATOR = 2;
 var LAYER_ENEMIES = 3;
 var LAYER_GOLD = 4;
