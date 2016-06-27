@@ -248,7 +248,8 @@ function run()
 	stateManager.draw();	
 
     player.update(deltaTime);
-    drawMap();
+    drawMap(deltaTime);
+    //drawMap();
     player.draw();
 
     for(var i=0; i<bullets.length; i++)
@@ -283,7 +284,7 @@ function run()
 		context.font="14px Arial";
 		context.fillText("FPS: " + fps, 5, 20, 100);
 	}	    
-    //drawMap(deltaTime);
+    
    // DrawLevelCollisionData(1) 
 
 }
