@@ -283,7 +283,7 @@ function run()
 		context.font="14px Arial";
 		context.fillText("FPS: " + fps, 5, 20, 100);
 	}	    
-    drawMap(deltaTime);
+    //drawMap(deltaTime);
    // DrawLevelCollisionData(1) 
 
 }
