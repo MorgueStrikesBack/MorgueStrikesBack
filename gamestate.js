@@ -16,33 +16,36 @@ GameState.prototype.unload = function()
 GameState.prototype.update = function(dt) 
 {
 	if( this.delay > 0 )
+	{
 		this.delay -= dt;
+	}
+	else
+	{
+		player.update(dt);
+
+		for(var i=0; i<bullets.length; i++)
+		{
+			bullets[i].update(dt);
+
+		}
+
+		if(player.cooldownTimer >= 0)	
+			player.cooldownTimer -= dt
+	}
 }
 
 GameState.prototype.draw = function() 
 {	
 	if( this.delay <= 0 )
 	{
-		var deltaTime = getDeltaTime();
-
-		player.update(deltaTime);
-    	drawMap(deltaTime);
-    	//drawMap();
+		
+    	drawMap();
     	player.draw();
-
-    	for(var i=0; i<bullets.length; i++)
-		{
-			bullets[i].update(deltaTime);
-
-		}
 
 		for(var i=0; i<bullets.length; i++)
 		{
 			bullets[i].draw();
 		}
-
-		if(player.cooldownTimer >= 0)	
-			player.cooldownTimer -= deltaTime
 	}
 	else 
 	{
