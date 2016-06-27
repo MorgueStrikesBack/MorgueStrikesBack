@@ -36,13 +36,13 @@ var LAYER_ENEMIES = 3;
 var LAYER_GOLD = 4;
 var LAYER_BED= 5;*/
 
-var MAP = {tw:20, th:10};
+var MAP = {tw:20, th:15};
 var TILE = 35;
 var TILESET_TILE= TILE * TILE;
-var TILESET_PADDING = 0;
-var TILESET_SPACING = 0;
-var TILESET_COUNT_X = 7;
-var TILESET_COUNT_Y = 7;
+var TILESET_PADDING = 2;
+var TILESET_SPACING = 2;
+var TILESET_COUNT_X = 14;
+var TILESET_COUNT_Y = 14;
 
 var METER = TILE;
 var GRAVITY = METER * 9.8 * 6;
@@ -63,7 +63,7 @@ var stateManager = new StateManager();
 stateManager.pushState( new SplashState() );
 
 var tileset = document.createElement("img");
-tileset.src = "hospitaltilesetnew.png";
+tileset.src = "tileset.png";
 
 
 function intersects(x1, y1, w1, h1, x2, y2, w2, h2)
