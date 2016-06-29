@@ -28,8 +28,8 @@ var Enemy = function(x, y) {
 
 	this.velocity = new Vector2(0,0)
 	
-	this.width = 64;
-	this.height = 56;
+	this.width = 32;
+	this.height = 40;
 
 	this.moveRight = true;
 	this.pause = 0;
@@ -74,7 +74,7 @@ Enemy.prototype.update = function(deltaTime)
 
 		if(this.moveRight)
 		{
-			if(celldiag && !cellright) 
+			if(celldown && !cell) 
 			{
 				ddx = ddx + ENEMY_ACCEL;
 				this.sprite.setAnimation(ANIM_MOVING_RIGHT);
@@ -105,7 +105,7 @@ Enemy.prototype.update = function(deltaTime)
 			}
 		}
 
-		this.position.x = Math.floor(this.position.x + (deltaTime * this.velocity.x));
+		this.position.x = (this.position.x + (deltaTime * this.velocity.x));
 		this.velocity.x =bound(this.velocity.x + (deltaTime * ddx),-ENEMY_MAXDX, ENEMY_MAXDX);
 	}
 }
