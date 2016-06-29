@@ -54,6 +54,14 @@ var JUMP = METER * 1500;
 var player = new Player();
 var keyboard = new Keyboard();
 
+var music = new Howl(
+    {
+        urls: ["bg.ogg"],
+        loop: true,
+        buffer: true,
+        volume: 0.05
+    });
+music.play();
 
 var livesImage = document.createElement("img");
 	livesImage.src = "Brain.png";
