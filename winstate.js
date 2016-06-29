@@ -1,21 +1,22 @@
 
 var WinState = function() 
 {
+	this.prototype = BaseState;
 }
 
-BaseState.prototype.load = function() 
+WinState.prototype.load = function() 
 {
 }
 
-BaseState.prototype.unload = function() 
+WinState.prototype.unload = function() 
 {
 }
 
-BaseState.prototype.update = function(dt) 
+WinState.prototype.update = function(dt) 
 {
 }
 
-BaseState.prototype.draw = function() 
+WinState.prototype.draw = function() 
 {
 	context.font="72px Verdana";	
 	context.fillStyle = "#FF0";	
