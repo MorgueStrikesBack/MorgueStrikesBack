@@ -44,6 +44,9 @@ var Player = function() {
     this.shooting = false;
     this.melee = false;
 
+    this.soul = 0;
+
+
     this.direction = RIGHT;
     
     this.cooldownTimer = 0;
@@ -215,7 +218,12 @@ Player.prototype.update = function(deltaTime) {
 if (cellAtTileCoord(LAYER_TRIGGER, tx, ty) == true) {
               stateManager.switchState ( new WinState() );
           }
-
+if (cellAtTileCoord(LAYER_ENEMY, tx, ty) == true) {
+              stateManager.switchState ( new LOSESTATE() );
+          }
+if (cellAtTileCoord(LAYER_SOUL, tx, ty) == true) {
+             this.soul ++;
+          }
     if (this.velocity.y > 0) {
         if ((celldown && !cell) || (celldiag && !cellright & nx)) {
             this.position.y = tileToPixel(ty);
@@ -251,4 +259,9 @@ if (cellAtTileCoord(LAYER_TRIGGER, tx, ty) == true) {
 
 Player.prototype.draw = function() {
     this.sprite.draw(context, this.position.x -worldOffsetX, this.position.y);
+    
+    context.fillStyle = "#000";
+        context.font = "18px Arial";
+        context.fillText("Souls:  " + this.soul.toString(), 500, 40);
+    
 } 
