@@ -45,7 +45,7 @@ var TILESET_COUNT_Y = 7;
 
 var METER = TILE;
 var GRAVITY = METER * 9.8 * 6;
-var MAXDX = METER * 5;
+var MAXDX = METER * 10;
 var MAXDY = METER * 15;
 var ACCEL = MAXDX * 2;
 var FRICTION = MAXDX * 6;
