@@ -28,13 +28,12 @@ var DEBUG = 1;
 var SCREEN_WIDTH = canvas.width;
 var SCREEN_HEIGHT = canvas.height;
 
-var LAYER_COUNT = 2;
+var LAYER_COUNT = 5;
 var LAYER_BACKGROUND = 1;
 var LAYER_PLATFORMS = 0;
-/*var LAYER_ELEVATOR = 2;
-var LAYER_ENEMIES = 3;
-var LAYER_GOLD = 4;
-var LAYER_BED= 5;*/
+var LAYER_ENEMY = 2;
+var LAYER_SOUL = 3;
+var LAYER_TRIGGER = 4;
 
 var MAP = {tw:20, th:10};
 var TILE = 35;
