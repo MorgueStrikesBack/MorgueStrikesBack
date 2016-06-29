@@ -1,5 +1,5 @@
 
-var WinState = function() 
+var BaseState = function() 
 {
 }
 
