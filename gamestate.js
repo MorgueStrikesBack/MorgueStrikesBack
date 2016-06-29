@@ -26,8 +26,19 @@ GameState.prototype.update = function(dt)
 			{
 				if(intersects( player.position.x -worldOffsetX, player.position.y, TILE, TILE, enemies[j].position.x-worldOffsetX, enemies[j].position.y, TILE, TILE) == true)
 				{
-					stateManager.switchState ( new DeadState() );
 					lives -=1;
+					ammo = 10;
+					player.position.x = 9 * TILE
+					player.position.y = 0 * TILE
+
+					if(lives <=0){
+						stateManager.switchState ( new GameOverState() );	
+					}
+					else
+					{
+						stateManager.switchState ( new DeadState() );
+					}
+					
 				}
 			}
 		var hit = false
