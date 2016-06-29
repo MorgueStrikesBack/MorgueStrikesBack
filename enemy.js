@@ -28,8 +28,8 @@ var Enemy = function(x, y) {
 
 	this.velocity = new Vector2(0,0)
 	
-	this.width = 64;
-	this.height = 56;
+	this.width = 32;
+	this.height = 40;
 
 	this.moveRight = true;
 	this.pause = 0;
