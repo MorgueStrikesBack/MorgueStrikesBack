@@ -30,6 +30,6 @@ SplashState.prototype.draw = function()
 	
 	context.font="18px Verdana";	
 	context.fillStyle = "#000";	
-	width =  context.measureText("Press SPACE to Continue.").width;
-	context.fillText("Press SPACE to Continue.", SCREEN_WIDTH/2 - width/2, 300);	
+	width =  context.measureText("Press SPACE to Start.").width;
+	context.fillText("Press SPACE to Start.", SCREEN_WIDTH/2 - width/2, 300);	
 }

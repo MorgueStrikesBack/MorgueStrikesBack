@@ -59,7 +59,7 @@ var music = new Howl(
         urls: ["bg.ogg"],
         loop: true,
         buffer: true,
-        volume: 0.05
+        volume: 0.1
     });
 music.play();
 
