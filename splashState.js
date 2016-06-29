@@ -23,10 +23,10 @@ SplashState.prototype.update = function(dt)
 
 SplashState.prototype.draw = function() 
 {
-	context.font="72px Verdana";	
+	context.font="50px Verdana";	
 	context.fillStyle = "#FF0";	
-	var width =  context.measureText("SPLASH SCREEN").width;
-	context.fillText("SPLASH SCREEN", SCREEN_WIDTH/2 - width/2, SCREEN_HEIGHT/2);		
+	var width =  context.measureText("MORGUE STRIKES BACK").width;
+	context.fillText("MORGUE STRIKES BACK", SCREEN_WIDTH/2 - width/2, SCREEN_HEIGHT/2);		
 	
 	context.font="18px Verdana";	
 	context.fillStyle = "#000";	

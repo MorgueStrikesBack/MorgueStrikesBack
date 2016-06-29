@@ -21,5 +21,10 @@ GameOverState.prototype.draw = function()
 	context.font="72px Verdana";	
 	context.fillStyle = "#FF0";	
 	var width =  context.measureText("GAME OVER").width;
-	context.fillText("GAME OVER", SCREEN_WIDTH/2 - width/2, SCREEN_HEIGHT/2);	
+	context.fillText("GAME OVER", SCREEN_WIDTH/2 - width/2, SCREEN_HEIGHT/2);
+
+	context.font="18px Verdana";	
+	context.fillStyle = "#000";	
+	width =  context.measureText("Press F5 to Try Again.").width;
+	context.fillText("Press F5 to Try Again.", SCREEN_WIDTH/2 - width/2, 300);
 }
