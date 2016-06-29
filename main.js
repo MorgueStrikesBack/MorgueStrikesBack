@@ -232,7 +232,7 @@ function initialize() {
             if (level1.layers[LAYER_ENEMY].data[idx] != 0) {
                 var px = tileToPixel(x);
                 var py = tileToPixel(y);
-                var e = new Enemy(px, py);
+                var e = new Enemy(px, py+35);
                 enemies.push(e);
             }
             idx++;
