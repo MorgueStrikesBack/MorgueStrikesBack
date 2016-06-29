@@ -22,6 +22,14 @@ GameState.prototype.update = function(dt)
 	else
 	{
 		player.update(dt);
+		for(var j=0; j<enemies.length; j++)
+			{
+				if(intersects( player.position.x -worldOffsetX, player.position.y, TILE, TILE, enemies[j].position.x-worldOffsetX, enemies[j].position.y, TILE, TILE) == true)
+				{
+					stateManager.switchState ( new LOSESTATE() );
+					lives -=1;
+				}
+			}
 		var hit = false
 		for(var i=0; i<bullets.length; i++)
 		{

@@ -218,9 +218,7 @@ Player.prototype.update = function(deltaTime) {
 if (cellAtTileCoord(LAYER_TRIGGER, tx, ty) == true) {
               stateManager.switchState ( new WinState() );
           }
-if (cellAtTileCoord(LAYER_ENEMY, tx, ty) == true) {
-              stateManager.switchState ( new LOSESTATE() );
-          }
+
 if (cellAtTileCoord(LAYER_SOUL, tx, ty) == true) {
              this.soul ++;
           }
