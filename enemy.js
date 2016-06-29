@@ -3,8 +3,8 @@ var ANIM_MOVING_LEFT = 1;
 
 var ENEMY_ANIM_MAX = 2;
 
-
-
+var ENEMY_ACCEL = 10
+var ENEMY_MAXDX = 20
 var Enemy = function(x, y) {
 	this.sprite = new Sprite("Surgeon.png");
 	
