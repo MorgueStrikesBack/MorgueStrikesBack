@@ -121,14 +121,14 @@ Player.prototype.update = function(deltaTime) {
         if (this.shooting == false);
     }
             
-      if(keyboard.isKeyDown(keyboard.KEY_SHIFT) == true && this.cooldownTimer <= 0 )
+      if(keyboard.isKeyDown(keyboard.KEY_SHIFT) == true && this.cooldownTimer <= 0 && ammo > 0)
 	{
         
                 this.shooting == true;
 
 		this.cooldownTimer = 0.8;
 		// Shoot a bullet
-		
+		ammo -=1
 		bullets.push(new Bullet(this.position.x,this.position.y,this.direction))
 		if(this.direction == LEFT)
 		{

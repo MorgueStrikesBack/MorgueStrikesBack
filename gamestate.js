@@ -22,12 +22,37 @@ GameState.prototype.update = function(dt)
 	else
 	{
 		player.update(dt);
-
+		var hit = false
 		for(var i=0; i<bullets.length; i++)
 		{
 			bullets[i].update(dt);
 
+
+			for(var j=0; j<enemies.length; j++)
+			{
+				if(intersects( bullets[i].position.x -worldOffsetX, bullets[i].position.y, TILE, TILE, enemies[j].position.x-worldOffsetX, enemies[j].position.y, TILE, TILE) == true)
+				{
+
+				// kill both the bullet and the enemy
+
+					enemies.splice(j, 1);			
+
+
+
+				hit = true;
+				// increment the player score
+				
+				break;
+				}
+			}
+			if(hit == true)
+			{
+		
+				bullets.splice(i, 1);
+				break;
+			}
 		}
+}
 
 		for(var i=0; i<enemies.length; i++)
 		{
@@ -35,9 +60,9 @@ GameState.prototype.update = function(dt)
 
 		}
 
-		if(player.cooldownTimer >= 0)	
+		if(player.cooldownTimer >= 0){
 			player.cooldownTimer -= dt
-	}
+		}
 }
 
 GameState.prototype.draw = function() 
