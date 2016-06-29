@@ -16,19 +16,19 @@ var ANIM_MAX = 10;
 var Player = function() {
     this.sprite = new Sprite("player.png");
     this.sprite.buildAnimation(19, 2, 40, 49, 0.3, [0, 1, 2, 3]);
-    this.sprite.buildAnimation(19, 2, 40, 49, 0.3, [0,1,2,3]);
+    this.sprite.buildAnimation(19, 2, 40, 49, 0.3, [16,17,18]);
     this.sprite.buildAnimation(19, 2, 40, 49, 0.3, [4,5,6,7]);
-    this.sprite.buildAnimation(19, 2, 40, 49, 1, [16,17,18]);
-    this.sprite.buildAnimation(19, 2, 40, 49, 0.3, [8,9,10,11,12,13,14,15]);
+    this.sprite.buildAnimation(19, 2, 40, 49, 0.1, [16,17,18]);
+    this.sprite.buildAnimation(19, 2, 40.8, 49, 0.1, [8,9,10,11,12,13,14,15]);
     this.sprite.buildAnimation(19, 2, 40, 49, 0.3, [19,20,21,22]);
-    this.sprite.buildAnimation(19, 2, 40, 49, 0.3, [19,20,21,22]);
+    this.sprite.buildAnimation(19, 2, 40, 49, 0.3, [35,36,37]);
     this.sprite.buildAnimation(19, 2, 40, 49, 0.3, [23,24,25,26]);
-    this.sprite.buildAnimation(19, 2, 40, 49, 1, [35,36,37]);
-    this.sprite.buildAnimation(19, 2, 40, 49, 0.3, [27,28,29,30,31,32,33,34]);
+    this.sprite.buildAnimation(19, 2, 40, 49, 0.1, [35,36,37]);
+    this.sprite.buildAnimation(19, 2, 40.8, 49, 0.1, [27,28,29,30,31,32,33,34]);
     
 
     for (var i = 0; i < ANIM_MAX; i++) {
-        this.sprite.setAnimationOffset(i, 0, 0);
+        this.sprite.setAnimationOffset(i, -15, -5);
     }
 
     this.position = new Vector2();
@@ -41,8 +41,13 @@ var Player = function() {
 
     this.falling = true;
     this.jumping = false;
+    this.shooting = false;
+    this.melee = false;
 
-    this.direction = LEFT;
+    this.soul = 0;
+
+
+    this.direction = RIGHT;
     
     this.cooldownTimer = 0;
 
@@ -55,6 +60,7 @@ Player.prototype.update = function(deltaTime) {
     var right = false;
     var jump = false;
     var shooting = false;
+    var melee = false;
     
 
     if (keyboard.isKeyDown(keyboard.KEY_LEFT) == true) {
@@ -72,6 +78,16 @@ Player.prototype.update = function(deltaTime) {
             this.sprite.setAnimation(ANIM_WALK_RIGHT);
         }
     }
+    else if (keyboard.isKeyDown(keyboard.KEY_E) == true && this.direction == LEFT) {
+        if(this.sprite.currentAnimation = !ANIM_MELEE_LEFT) {
+            this.sprite.setAnimation(ANIM_MELEE_LEFT)
+        }
+    }
+    else if (keyboard.isKeyDown(keyboard.KEY_E) == true && this. direction == RIGHT) {
+            if(this.sprite.currentAnimtion != ANIM_MELEE_RIGHT) {
+                this.sprite.setAnimation(ANIM_MELEE_RIGHT)
+            }
+        }
     else {
         if (this.jumping == false && this.falling == false) {
             if (this.direction == LEFT) {
@@ -79,13 +95,15 @@ Player.prototype.update = function(deltaTime) {
                     this.sprite.setAnimation(ANIM_IDLE_LEFT);
             }
             else {
-                if (this.sprite.currentAnimation != ANIM_IDLE_RIGHT) {
+                if (this.direction == RIGHT) {
+                    if(this.sprite.currentAnimation != ANIM_IDLE_RIGHT)
                     this.sprite.setAnimation(ANIM_IDLE_RIGHT);
                 }
-
+                
+              }
             } 
         }
-    }
+    
     if (keyboard.isKeyDown(keyboard.KEY_UP) == true) {
         jump = true;
         if (left == true) {
@@ -103,12 +121,14 @@ Player.prototype.update = function(deltaTime) {
         if (this.shooting == false);
     }
             
-      if(keyboard.isKeyDown(keyboard.KEY_SHIFT) == true && this.cooldownTimer <= 0 )
+      if(keyboard.isKeyDown(keyboard.KEY_SHIFT) == true && this.cooldownTimer <= 0 && ammo > 0)
 	{
+        
+                this.shooting == true;
 
-		this.cooldownTimer = 1;
+		this.cooldownTimer = 0.8;
 		// Shoot a bullet
-		
+		ammo -=1
 		bullets.push(new Bullet(this.position.x,this.position.y,this.direction))
 		if(this.direction == LEFT)
 		{
@@ -120,9 +140,11 @@ Player.prototype.update = function(deltaTime) {
 		}
     }
     
-    else {
-        if(keyboard.isKeyDown(keyboard.KEY_E) == true)
+    if(keyboard.isKeyDown(keyboard.KEY_E) == true && this.cooldownTimer <= 0 )
     {
+        this.countdownTimer = 2;
+        this.melee = true;
+        
         if(this.direction == LEFT)
         {
             this.sprite.setAnimation(ANIM_MELEE_LEFT)
@@ -132,7 +154,6 @@ Player.prototype.update = function(deltaTime) {
             this.sprite.setAnimation(ANIM_MELEE_RIGHT)
         }
     }
-}
     
     var wasleft = this.velocity.x < 0;
     var wasright = this.velocity.x > 0;
@@ -161,6 +182,16 @@ Player.prototype.update = function(deltaTime) {
         }
 
     }
+    if (melee && !this.melee) {
+        ddx = 0;
+        this.melee = true;
+        if(this.direction == LEFT) {
+            this.sprite.setAnimation(ANIM_MELEE_LEFT)
+        }
+        else {
+            this.sprite.setAnimation(ANIM_MELEE_RIGHT)
+        }
+    }
 
     this.position.y = Math.floor(this.position.y + (deltaTime * this.velocity.y));
     this.position.x = Math.floor(this.position.x + (deltaTime * this.velocity.x));
@@ -184,6 +215,13 @@ Player.prototype.update = function(deltaTime) {
     var celldown = cellAtTileCoord(LAYER_PLATFORMS, tx, ty + 1);
     var celldiag = cellAtTileCoord(LAYER_PLATFORMS, tx + 1, ty + 1);
 
+if (cellAtTileCoord(LAYER_TRIGGER, tx, ty) == true) {
+              stateManager.switchState ( new WinState() );
+          }
+
+if (cellAtTileCoord(LAYER_SOUL, tx, ty) == true) {
+             this.soul ++;
+          }
     if (this.velocity.y > 0) {
         if ((celldown && !cell) || (celldiag && !cellright & nx)) {
             this.position.y = tileToPixel(ty);
@@ -219,4 +257,9 @@ Player.prototype.update = function(deltaTime) {
 
 Player.prototype.draw = function() {
     this.sprite.draw(context, this.position.x -worldOffsetX, this.position.y);
+    
+    context.fillStyle = "#000";
+        context.font = "18px Arial";
+        context.fillText("Souls:  " + this.soul.toString(), 500, 40);
+    
 } 
