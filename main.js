@@ -176,6 +176,25 @@ function initialize() {
             }
         }
     }
+    // initialize trigger layer in collision map
+    cells[LAYER_TRIGGER] = [];
+    idx = 0;
+    for (var y = 0; y < level1.layers[LAYER_TRIGGER].height; y++) {
+        cells[LAYER_TRIGGER][y] = [];
+        for (var x = 0; x < level1.layers[LAYER_TRIGGER].width; x++) {
+            if (level1.layers[LAYER_TRIGGER].data[idx] != 0) {
+                cells[LAYER_TRIGGER][y][x] = 1;
+                cells[LAYER_TRIGGER][y - 1][x] = 1;
+                cells[LAYER_TRIGGER][y - 1][x + 1] = 1;
+                cells[LAYER_TRIGGER][y][x + 1] = 1;
+            }
+            else if (cells[LAYER_TRIGGER][y][x] != 1) {
+                // if we haven't set this cell's value, then set it to 0 now
+                cells[LAYER_TRIGGER][y][x] = 0;
+            }
+            idx++;
+        }
+    }
 }   
     
 
