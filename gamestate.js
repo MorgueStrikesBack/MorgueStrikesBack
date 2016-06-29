@@ -29,6 +29,12 @@ GameState.prototype.update = function(dt)
 
 		}
 
+		for(var i=0; i<enemies.length; i++)
+		{
+			enemies[i].update(dt);
+
+		}
+
 		if(player.cooldownTimer >= 0)	
 			player.cooldownTimer -= dt
 	}
@@ -41,6 +47,13 @@ GameState.prototype.draw = function()
 		
     	drawMap();
     	player.draw();
+
+		for(var i=0; i<enemies.length; i++)
+		{
+			enemies[i].draw();
+
+		}
+
 
 		for(var i=0; i<bullets.length; i++)
 		{
