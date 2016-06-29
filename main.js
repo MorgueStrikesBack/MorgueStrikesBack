@@ -28,13 +28,12 @@ var DEBUG = 1;
 var SCREEN_WIDTH = canvas.width;
 var SCREEN_HEIGHT = canvas.height;
 
-var LAYER_COUNT = 2;
+var LAYER_COUNT = 5;
 var LAYER_BACKGROUND = 1;
 var LAYER_PLATFORMS = 0;
-/*var LAYER_ELEVATOR = 2;
-var LAYER_ENEMIES = 3;
-var LAYER_GOLD = 4;
-var LAYER_BED= 5;*/
+var LAYER_ENEMY = 2;
+var LAYER_SOUL = 3;
+var LAYER_TRIGGER = 4;
 
 var MAP = {tw:20, th:10};
 var TILE = 35;
@@ -175,6 +174,25 @@ function initialize() {
                 }
                 idx++;
             }
+        }
+    }
+    // initialize trigger layer in collision map
+    cells[LAYER_TRIGGER] = [];
+    idx = 0;
+    for (var y = 0; y < level1.layers[LAYER_TRIGGER].height; y++) {
+        cells[LAYER_TRIGGER][y] = [];
+        for (var x = 0; x < level1.layers[LAYER_TRIGGER].width; x++) {
+            if (level1.layers[LAYER_TRIGGER].data[idx] != 0) {
+                cells[LAYER_TRIGGER][y][x] = 1;
+                cells[LAYER_TRIGGER][y - 1][x] = 1;
+                cells[LAYER_TRIGGER][y - 1][x + 1] = 1;
+                cells[LAYER_TRIGGER][y][x + 1] = 1;
+            }
+            else if (cells[LAYER_TRIGGER][y][x] != 1) {
+                // if we haven't set this cell's value, then set it to 0 now
+                cells[LAYER_TRIGGER][y][x] = 0;
+            }
+            idx++;
         }
     }
 }   
