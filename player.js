@@ -211,7 +211,9 @@ Player.prototype.update = function(deltaTime) {
     var cellright = cellAtTileCoord(LAYER_PLATFORMS, tx + 1, ty);
     var celldown = cellAtTileCoord(LAYER_PLATFORMS, tx, ty + 1);
     var celldiag = cellAtTileCoord(LAYER_PLATFORMS, tx + 1, ty + 1);
-
+     if (cellAtTileCoord(LAYER_TRIGGER, tx, ty) == true) {
+              stateManager.switchState ( new WinState() );
+          }
     if (this.velocity.y > 0) {
         if ((celldown && !cell) || (celldiag && !cellright & nx)) {
             this.position.y = tileToPixel(ty);
