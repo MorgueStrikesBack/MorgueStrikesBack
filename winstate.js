@@ -18,7 +18,7 @@ WinState.prototype.update = function(dt)
 
 WinState.prototype.draw = function() 
 {
-	context.font="72px Verdana";	
+	context.font="60px Verdana";	
 	context.fillStyle = "#FF0";	
 	var width =  context.measureText("CONGRATULATIONS").width;
 	context.fillText("CONGRATULATIONS", SCREEN_WIDTH/2 - width/2, SCREEN_HEIGHT/2);
