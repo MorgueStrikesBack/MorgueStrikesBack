@@ -46,6 +46,17 @@ GameState.prototype.draw = function()
 	{
 		
     	drawMap();
+
+		for(var i=0; i<lives; i++)
+		{
+			context.drawImage(livesImage, 20 + ((livesImage.width+2)*i), 10);
+		}
+
+		for(var i=0; i<ammo; i++)
+		{
+			context.drawImage(ammoImage, 30 + ((ammoImage.width+2)*i), 40);
+		}
+
     	player.draw();
 
 		for(var i=0; i<enemies.length; i++)

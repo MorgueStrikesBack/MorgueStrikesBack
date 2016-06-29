@@ -54,6 +54,17 @@ var JUMP = METER * 1500;
 var player = new Player();
 var keyboard = new Keyboard();
 
+
+var livesImage = document.createElement("img");
+	livesImage.src = "Brain.png";
+
+var ammoImage = document.createElement("img");
+	ammoImage.src = "bullet.png";
+
+
+var ammo = 10
+var lives = 5
+
 var enemies = [];
 var bullets = [];
 
