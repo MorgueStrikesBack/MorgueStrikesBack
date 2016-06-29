@@ -16,6 +16,7 @@ DeadState.prototype.update = function(dt)
 {
 	if( keyboard.isKeyDown( keyboard.KEY_E ) == true )
 	{
+		sfxBegin.play();
 		stateManager.switchState( new GameState() );
 	}
 }
