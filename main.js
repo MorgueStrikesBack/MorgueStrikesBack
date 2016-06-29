@@ -206,6 +206,25 @@ function initialize() {
             idx++;
         }
     }
+       // soul trigger
+    cells[LAYER_SOUL] = [];
+    idx = 0;
+    for (var y = 0; y < level1.layers[LAYER_SOUL].height; y++) {
+        cells[LAYER_SOUL][y] = [];
+        for (var x = 0; x < level1.layers[LAYER_SOUL].width; x++) {
+            if (level1.layers[LAYER_SOUL].data[idx] != 0) {
+                cells[LAYER_SOUL][y][x] = 1;
+                cells[LAYER_SOUL][y - 1][x] = 1;
+                cells[LAYER_SOUL][y - 1][x + 1] = 1;
+                cells[LAYER_SOUL][y][x + 1] = 1;
+            }
+            else if (cells[LAYER_SOUL][y][x] != 1) {
+                // if we haven't set this cell's value, then set it to 0 now
+                cells[LAYER_SOUL][y][x] = 0;
+            }
+            idx++;
+        }
+    }
         // add enemies
     idx = 0;
     for (var y = 0; y < level1.layers[LAYER_ENEMY].height; y++) {
