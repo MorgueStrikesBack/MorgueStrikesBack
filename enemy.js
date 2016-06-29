@@ -74,7 +74,7 @@ Enemy.prototype.update = function(deltaTime)
 
 		if(this.moveRight)
 		{
-			if(celldown && !cell) 
+			if(celldown) 
 			{
 				ddx = ddx + ENEMY_ACCEL;
 				this.sprite.setAnimation(ANIM_MOVING_RIGHT);
@@ -92,7 +92,7 @@ Enemy.prototype.update = function(deltaTime)
 
 		if(!this.moveRight)
 		{
-			if(celldown && !cell) 
+			if(celldown) 
 			{
 				ddx = ddx - ENEMY_ACCEL;
 				this.sprite.setAnimation(ANIM_MOVING_LEFT);
