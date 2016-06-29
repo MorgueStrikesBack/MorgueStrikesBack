@@ -54,7 +54,7 @@ var JUMP = METER * 1500;
 var player = new Player();
 var keyboard = new Keyboard();
 
-
+var enemies = [];
 var bullets = [];
 
 var stateManager = new StateManager();
@@ -195,6 +195,19 @@ function initialize() {
             idx++;
         }
     }
+        // add enemies
+    idx = 0;
+    for (var y = 0; y < level1.layers[LAYER_ENEMY].height; y++) {
+        for (var x = 0; x < level1.layers[LAYER_ENEMY].width; x++) {
+            if (level1.layers[LAYER_ENEMY].data[idx] != 0) {
+                var px = tileToPixel(x);
+                var py = tileToPixel(y);
+                var e = new Enemy(px, py);
+                enemies.push(e);
+            }
+            idx++;
+        }
+    } 
 }   
     
 
