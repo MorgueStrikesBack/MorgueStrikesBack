@@ -26,7 +26,7 @@ GameState.prototype.update = function(dt)
 			{
 				if(intersects( player.position.x -worldOffsetX, player.position.y, TILE, TILE, enemies[j].position.x-worldOffsetX, enemies[j].position.y, TILE, TILE) == true)
 				{
-					stateManager.switchState ( new LOSESTATE() );
+					stateManager.switchState ( new DeadState() );
 					lives -=1;
 				}
 			}
